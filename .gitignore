@@ -1,0 +1,16 @@
+# 大体积工具/环境目录（本地抠图脚本与 Python 依赖，无需上传）
+.tools/
+
+# 依赖与构建产物
+node_modules/
+__pycache__/
+*.pyc
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器
+.idea/
+.vscode/

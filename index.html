@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="阮涵的 AI 产品实习作品集。" />
+    <meta name="theme-color" content="#f8f3ea" />
+    <title>阮涵 · AI Product Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;600;700;900&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=1786012815007" />
+  </head>
+  <body>
+    <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+    <div class="ambient" aria-hidden="true"><span class="ambient__orb ambient__orb--pink"></span><span class="ambient__orb ambient__orb--yellow"></span><span class="ambient__orb ambient__orb--blue"></span></div>
+
+    <header class="site-header" id="top">
+      <a class="brand magnetic" href="#home" aria-label="返回首页"><span class="brand__mark">R</span><span class="brand__text">RUAN HAN / PORTFOLIO</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span class="sr-only">打开菜单</span></button>
+      <nav class="site-nav" id="site-nav" aria-label="主导航"><a class="is-active" href="#home">首页</a><a href="#about">关于</a><a href="#experience">经历</a><a href="#works">项目</a><a href="#life">生活</a><a href="#contact">联系</a></nav>
+      <a class="header-cta magnetic" href="#contact">认识一下 <span>↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero section-shell" id="home">
+        <div class="hero__copy reveal">
+          <p class="hero__en line-reveal"><span>AI PRODUCT <span class="accent">MAKER</span></span></p>
+          <p class="eyebrow"><span class="status-dot"></span> HELLO / 你好，很高兴见到你</p>
+          <h1><span>我是 <em>阮涵</em>，</span><span class="hero__serif">正在成为一名</span><span class="hero__accent">懂业务、会落地的 AI 产品人。</span></h1>
+          <p class="hero__intro">四川大学社会保障硕士在读，聚焦 AI Agent、LLM 应用与具身智能场景。我相信好的产品不是堆叠技术，而是让模型能力真正抵达具体的人和问题。</p>
+          <div class="tag-row" aria-label="个人关键词"><span>AI 产品</span><span>Agent 设计</span><span>Prompt 工程</span><span>MVP 验证</span></div>
+          <div class="hero__actions"><a class="button button--dark magnetic" href="#works">查看项目 <span>↘</span></a><a class="button button--light magnetic" href="#contact">与我联系 <span>↗</span></a></div>
+        </div>
+
+        <div class="hero__visual reveal" data-delay="120">
+          <div class="portrait-card portrait-card--blended" id="photo-dropzone">
+            <img class="portrait-card__image" id="portrait-image" src="assets/ruan-han-cutout.png?v=1786003963319" alt="阮涵的个人照片" />
+            <div class="portrait-upload" aria-live="polite"><label class="portrait-upload__choose" for="portrait-input">更换照片 <span>↗</span></label><button class="portrait-upload__remove" id="portrait-remove" type="button">恢复默认</button><input id="portrait-input" type="file" accept="image/png,image/jpeg,image/webp" /><span class="portrait-upload__hint" id="portrait-hint">校园里的日常瞬间</span></div>
+            <span class="spark spark--one">✦</span><span class="spark spark--two">✧</span>
+          </div>
+          <div class="hero-sticker"><span>NOW</span><strong>好奇于技术<br />认真做产品</strong></div>
+        </div>
+        <div class="scroll-cue"><span>SCROLL TO EXPLORE</span><i>↓</i></div>
+      </section>
+
+      <section class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <div class="marquee__group">
+            <span>让AI更好服务人类，实现更公平的社会分配！</span><span class="marquee__dot">✦</span>
+            <span class="marquee__out">AI for everyone</span><span class="marquee__dot">✦</span>
+            <span>让AI更好服务人类，实现更公平的社会分配！</span><span class="marquee__dot">✦</span>
+            <span class="marquee__out">AI for everyone</span><span class="marquee__dot">✦</span>
+          </div>
+          <div class="marquee__group">
+            <span>让AI更好服务人类，实现更公平的社会分配！</span><span class="marquee__dot">✦</span>
+            <span class="marquee__out">AI for everyone</span><span class="marquee__dot">✦</span>
+            <span>让AI更好服务人类，实现更公平的社会分配！</span><span class="marquee__dot">✦</span>
+            <span class="marquee__out">AI for everyone</span><span class="marquee__dot">✦</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section-shell" id="about">
+        <header class="section-heading reveal"><p class="section-index">01 / ABOUT ME</p><h2>从人的问题出发，<br /><em>把 AI 变成可用的产品。</em></h2></header>
+        <div class="about__grid">
+          <div class="about-reveal reveal" id="about-reveal">
+            <img class="about-reveal__color" src="assets/ruan-han-id-color.png?v=1786012020534" alt="阮涵证件照" />
+            <img class="about-reveal__sketch" src="assets/ruan-han-id-sketch.png?v=1786012020632" alt="阮涵证件照素描" />
+            <span class="about-reveal__hint">hover me</span>
+          </div>
+          <div class="about__info reveal" data-delay="100">
+            <article><span>本科</span><strong>西南政法大学</strong><p>行政管理专业</p></article>
+            <article><span>硕士</span><strong>四川大学</strong><p>社会保障专业</p></article>
+            <article><span>主修课程</span><strong>社会政策分析 · 社会保障基金管理 · 公共管理学 · 公共经济学</strong></article>
+            <article><span>产品技能</span><strong>需求分析 · 原型设计 · PRD 撰写 · 数据分析 · AIGC 工具链</strong></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience section-shell" id="experience">
+        <header class="section-heading reveal"><p class="section-index">02 / WHAT I'VE DONE</p><h2>两段实习，<br /><em>同一个信念：把 AI 做进真实场景。</em></h2></header>
+
+        <div class="story-flow">
+          <article class="story-card reveal">
+            <div class="story-card__visual story-card__visual--robot">
+              <div class="story-card__badge">01</div>
+              <div class="story-card__stats"><span class="story-card__stat"><span class="count" data-count="72">72</span><span>%</span></span><span class="story-card__arrow">→</span><span class="story-card__stat"><span class="count" data-count="88">88</span><span>%</span></span></div>
+              <div class="story-card__tagline">意图识别准确率提升</div>
+            </div>
+            <div class="story-card__body">
+              <div class="story-card__meta"><span>2025.06 — 2025.08</span><span>津安达 · 成都研发部</span></div>
+              <h3>和一台机器人对话 100 次</h3>
+              <p>在津安达具身机器人公司，我干了一件听起来很酷的事：让迎宾机器人能听懂人话。调试 LLM Prompt、搭建角色设定与 Few-shot 框架，用 Temperature 和 Top-P 做了上百轮 A/B 测试——最后在真实的机器人上跑了 100+ 轮实景验证。</p>
+              <p class="story-card__highlight">从调试 Prompt 开始，我第一次理解了模型能力是有边界的，而产品人的工作就是找到那个边界，然后推进它。</p>
+              <div class="story-card__tags"><span>Prompt 工程</span><span>具身智能</span><span>A/B 测试</span></div>
+            </div>
+          </article>
+
+          <article class="story-card reveal" data-delay="120">
+            <div class="story-card__visual story-card__visual--agent">
+              <div class="story-card__badge">02</div>
+              <div class="story-card__icon-row">🤖 → 📊 → 📝</div>
+              <div class="story-card__tagline">Agent 全流程</div>
+            </div>
+            <div class="story-card__body">
+              <div class="story-card__meta"><span>2026.07 — 2026.09</span><span>未来智选</span></div>
+              <h3>让 AI 替团队写周报</h3>
+              <p>参与广告决策辅助、业务巡检、周报生成等多个 AI Agent 项目。独立负责周报 Agent 这条线——从梳理能力边界、定义触发条件到输出规范，全部从头来过。做完 HTML 可交互原型后直接跟开发对接接口。</p>
+              <p class="story-card__highlight">把"手工写周报耗时、指标查看分散"的问题，落成可演示、可验证的产品方案。</p>
+              <div class="story-card__tags"><span>AI Agent</span><span>MVP 验证</span><span>原型设计</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="outline-band" aria-hidden="true">
+        <div class="outline-band__track">
+          <div class="outline-band__group">
+            <span>AI PRODUCT MAKER</span><span class="ob-dot">✦</span>
+            <span>让 AI 落地</span><span class="ob-dot">✦</span>
+            <span>MAKE AI USEFUL</span><span class="ob-dot">✦</span>
+          </div>
+          <div class="outline-band__group">
+            <span>AI PRODUCT MAKER</span><span class="ob-dot">✦</span>
+            <span>让 AI 落地</span><span class="ob-dot">✦</span>
+            <span>MAKE AI USEFUL</span><span class="ob-dot">✦</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="works section-shell" id="works">
+        <header class="section-heading reveal"><p class="section-index">03 / MY WORK</p><h2>把模糊的需求，<br /><em>变成能被验证的产品。</em></h2></header>
+        <p class="works-intro reveal">真实业务里做的，和自己动手做的——都在这里。</p>
+        <div class="work-grid">
+          <article class="work-card reveal"><button class="work-card__cover cover-one" type="button" data-project="未来智选 · 周报 Agent" data-project-type="B 端产品 · AI Agent / MVP 验证" data-project-description="面向运营人员手工撰写周报耗时、管理层查看业务指标分散的问题，梳理 Agent 能力边界、触发条件与输出规范；独立完成覆盖周报自动生成和指标可视化的 HTML 可交互原型，并完成大模型 API 接入与开发协作。" data-project-link=""><span class="cover-one__label">B-SIDE / 01</span><strong>让业务周报<br />自己说清楚</strong><i>↗</i><span class="sr-only">查看周报 Agent 详情</span></button><div class="work-card__meta"><div><span>B 端产品 · AI Agent</span><h3>未来智选 · 周报 Agent</h3></div><strong>2026</strong></div></article>
+          <article class="work-card reveal" data-delay="80"><button class="work-card__cover cover-learning" type="button" data-project="AI 学习助手" data-project-type="C 端产品 · Vibe Coding" data-project-description="一款由我独立 Vibe Coding 完成的 C 端 AI 学习助手。这里将持续记录从想法、设计到实现的过程，并预留项目仓库链接。" data-project-link=""><span class="cover-learning__label">C-SIDE / 02</span><strong>把学习的节奏<br />交还给自己</strong><span class="cover-learning__orbit"></span><i>↗</i><span class="sr-only">查看 AI 学习助手详情</span></button><div class="work-card__meta"><div><span>C 端产品 · Vibe Coding</span><h3>AI 学习助手</h3></div><strong>ONGOING</strong></div></article>
+        </div>
+      </section>
+
+      <section class="life section-shell" id="life" aria-labelledby="life-title">
+        <header class="life-heading reveal"><div><p class="section-index">04 / LIFE OUTSIDE WORK</p><h2 id="life-title">保持热爱，<br /><em>也把生活过得明亮。</em></h2></div><p>工作认真投入，生活也不停止探索。<br />用运动、远方和日常，把能量留在每一天。</p></header>
+        <div class="life-gallery reveal">
+          <figure class="life-cover"><img src="assets/ruan-han-mirror.jpg?v=1785984894937" alt="阮涵的生活封面照" /><figcaption><span>EVERYDAY NOTES</span><strong>把普通日子，<br />也过成自己的样子。</strong></figcaption></figure>
+          <div class="life-grid"><figure class="life-photo life-photo--fitness"><img src="assets/ruan-han-fitness.jpg?v=1785979791120" alt="阮涵在健身房" /><figcaption>保持力量，也保持专注。</figcaption></figure><figure class="life-photo life-photo--sunset"><img src="assets/ruan-han-sunset.jpg?v=1785979796724" alt="阮涵在日落时刻" /><figcaption>在日落里，把视野放远一点。</figcaption></figure><figure class="life-photo life-photo--qilixiang"><img src="assets/ruan-han-qilixiang.jpg?v=1785979784933" alt="阮涵在七里香花下" /><figcaption>七里香花下，记住夏天的明亮。</figcaption></figure></div>
+        </div>
+      </section>
+
+      <section class="contact section-shell" id="contact"><div class="contact-card reveal"><span class="contact-card__sun" aria-hidden="true"></span><p class="section-index">05 / SAY HELLO</p><h2>如果你也在做<br /><em>让 AI 真正有用的产品，</em><br />欢迎和我聊聊。</h2><a class="contact-card__mail magnetic" href="mailto:1487253258@qq.com">1487253258@qq.com <span>↗</span></a><div class="contact-card__footer"><span>CHENGDU · CHONGQING · OPEN TO AI PRODUCT</span><span>EMAIL / PHONE</span></div></div></section>
+    </main>
+
+    <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title"><button class="project-dialog__close" type="button" aria-label="关闭项目详情">×</button><p class="section-index" id="project-dialog-type">PROJECT</p><h2 id="project-dialog-title">项目标题</h2><p id="project-dialog-description">项目说明</p><div class="project-dialog__actions"><a class="button button--dark" href="#contact" id="project-contact">想合作，联系我 <span>↗</span></a><a class="button button--light project-github" id="project-github" href="" target="_blank" rel="noreferrer" aria-disabled="true">GitHub 链接待添加</a></div></dialog>
+    <footer class="site-footer"><a class="brand" href="#top"><span class="brand__mark">R</span><span class="brand__text">RUAN HAN / PORTFOLIO</span></a><p>认真观察，持续行动。<br /><span>© <span id="year"></span> RUAN HAN</span></p><a href="#top">BACK TO TOP ↑</a></footer>
+    <script src="script.js?v=1786012841125"></script>
+  </body>
+</html>
