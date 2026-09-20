@@ -1,0 +1,26 @@
+:host { position: fixed; inset: 0; z-index: 1000; pointer-events: none; display: block; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; --character-height: min(260px, 37vh); }
+:host([stage]) { position: absolute; z-index: 2; --character-height: clamp(240px, 40vh, 380px); }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+.pet { position: absolute; top: 0; left: 0; width: calc(var(--character-height) * .65); padding-bottom: 35px; pointer-events: none; will-change: transform; }
+.character { display: block; width: 100%; height: var(--character-height); padding: 0; border: 0; background: transparent; cursor: grab; touch-action: none; pointer-events: auto; transform-origin: 50% 90%; -webkit-tap-highlight-color: transparent; }
+.character canvas { display: block; width: 100%; height: 100%; object-fit: contain; user-select: none; -webkit-user-drag: none; filter: drop-shadow(0 8px 9px #0002); }
+.character:focus-visible, .tools button:focus-visible, .restore:focus-visible { outline: 3px solid #2477ed; outline-offset: 5px; border-radius: 12px; }
+
+.dragging .character { cursor: grabbing; }
+.shadow { position: absolute; bottom: 31px; left: 15%; width: 70%; height: 12px; border-radius: 50%; background: #132b5626; filter: blur(6px); z-index: -1; }
+.bubble { position: absolute; bottom: calc(100% + 5px); left: 50%; translate: -50% 8px; width: max-content; max-width: 190px; padding: 11px 15px; border-radius: 16px 16px 16px 3px; background: #fff; color: #182b48; box-shadow: 0 5px 20px #102a431c; font-size: 13px; line-height: 1.5; opacity: 0; transition: opacity .18s, translate .18s; }
+.bubble.visible { opacity: 1; translate: -50% 0; }
+.tools { display: flex; justify-content: center; gap: 4px; position: absolute; bottom: 0; width: 100%; pointer-events: auto; }
+.tools button { font: inherit; font-size: 11px; color: #34516b; background: #ffffffeb; border: 1px solid #d5e3ed; border-radius: 20px; padding: 5px 9px; cursor: pointer; white-space: nowrap; }
+.tools button[aria-pressed="true"] { color: white; background: var(--mascot-accent, #2477ed); border-color: var(--mascot-accent, #2477ed); }
+.restore { pointer-events: auto; position: absolute; bottom: 20px; right: 20px; border: 1px solid #c2d7ee; border-radius: 99px; background: #fff; color: #285b9b; font: inherit; padding: 12px 20px; cursor: pointer; box-shadow: 0 4px 20px #0001; }
+
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); }
+@keyframes stroll { from { transform: translateY(0) rotate(-2deg); } to { transform: translateY(-7px) rotate(2deg); } }
+@keyframes hello { 0%,100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-14px) rotate(-5deg); } 55% { transform: translateY(-3px) rotate(4deg); } 75% { transform: translateY(-6px) rotate(-2deg); } }
+@media (max-width: 520px) { :host { --character-height: 180px; } :host([stage]) { --character-height: 255px; } .bubble { max-width: 145px; font-size: 12px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .character:hover, .dragging .character { rotate: none; scale: 1; } }
+
+.tools button,.restore {background:#211e2d;color:#ddd1f0;border-color:#5e4e73} .shadow{background:#9273c333} .character canvas{width:100%;height:100%;object-fit:contain}

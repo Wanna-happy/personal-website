@@ -1,0 +1,126 @@
+{
+  "model": "Wav2Lip-SD-GAN",
+  "execution": "local CPU",
+  "items": {
+    "chapters-home": {
+      "src": "mascot/assets/lipsync/chapters-home.mp4",
+      "audioSha256": "945838881bb472a3cd389b140734eee90bb84778c8a561ec46c2070b5b510c15",
+      "fps": 24.0,
+      "duration": 8.875,
+      "frames": 213,
+      "secondsToRender": 24.03
+    },
+    "chapters-about": {
+      "src": "mascot/assets/lipsync/chapters-about.mp4",
+      "audioSha256": "c39134f88680a4bf5de4c849f81eb40a2fe33f7463cd15c6741635e2784e400f",
+      "fps": 24.0,
+      "duration": 9.125,
+      "frames": 219,
+      "secondsToRender": 13.53
+    },
+    "chapters-experience": {
+      "src": "mascot/assets/lipsync/chapters-experience.mp4",
+      "audioSha256": "322015e1b154a10b409abe0d839d4eee84edb8a30c7f856236d863bcd5ef3517",
+      "fps": 24.0,
+      "duration": 6.958333333333333,
+      "frames": 167,
+      "secondsToRender": 6.38
+    },
+    "chapters-works": {
+      "src": "mascot/assets/lipsync/chapters-works.mp4",
+      "audioSha256": "5b9e422314c60e12284477314d066c71996cace3a2b73e7232aed00eb822fc74",
+      "fps": 24.0,
+      "duration": 7.666666666666667,
+      "frames": 184,
+      "secondsToRender": 7.06
+    },
+    "chapters-contact": {
+      "src": "mascot/assets/lipsync/chapters-contact.mp4",
+      "audioSha256": "91ccc2ee2819e4dffcb2a793db26ec19e0a88150e3f5ed9654a5350d255bd499",
+      "fps": 24.0,
+      "duration": 8.541666666666666,
+      "frames": 205,
+      "secondsToRender": 7.92
+    },
+    "topics-study": {
+      "src": "mascot/assets/lipsync/topics-study.mp4",
+      "audioSha256": "d07922a69848ca316bdfd2c88dee960b4f50b69737536a0ca34e3be4570f602c",
+      "fps": 24.0,
+      "duration": 6.25,
+      "frames": 150,
+      "secondsToRender": 7.28
+    },
+    "topics-focus": {
+      "src": "mascot/assets/lipsync/topics-focus.mp4",
+      "audioSha256": "43a59a575e5b16515522a2900ccebed0d713db6faa85fea5e0a170b8e678109a",
+      "fps": 24.0,
+      "duration": 8.25,
+      "frames": 198,
+      "secondsToRender": 8.7
+    },
+    "topics-life": {
+      "src": "mascot/assets/lipsync/topics-life.mp4",
+      "audioSha256": "3c84622bf93a074543ec001bac9c5c291ffa7c7a7837199fba55a01fdca57fb9",
+      "fps": 24.0,
+      "duration": 7.5,
+      "frames": 180,
+      "secondsToRender": 7.24
+    },
+    "topics-robot": {
+      "src": "mascot/assets/lipsync/topics-robot.mp4",
+      "audioSha256": "c6b684763853f3eff6dfee62cd055b5a6f900bfc05c0c1a9eff1051599e79a85",
+      "fps": 24.0,
+      "duration": 10.541666666666666,
+      "frames": 253,
+      "secondsToRender": 9.62
+    },
+    "topics-weekly": {
+      "src": "mascot/assets/lipsync/topics-weekly.mp4",
+      "audioSha256": "95e2000f8f23da77a7543d80b12ca046aab759d6c892907cb47571dbb93e9251",
+      "fps": 24.0,
+      "duration": 9.833333333333334,
+      "frames": 236,
+      "secondsToRender": 9.0
+    },
+    "topics-learning": {
+      "src": "mascot/assets/lipsync/topics-learning.mp4",
+      "audioSha256": "cdc51089acbf0e86c54bd91f837a9b388e591c31dad802a3a266ef2f7454279a",
+      "fps": 24.0,
+      "duration": 9.416666666666666,
+      "frames": 226,
+      "secondsToRender": 9.91
+    },
+    "topics-fitness": {
+      "src": "mascot/assets/lipsync/topics-fitness.mp4",
+      "audioSha256": "a333995c8c557249922735baa817cc4e89e70edc2611e20f00def941cc2dc9ab",
+      "fps": 24.0,
+      "duration": 4.0,
+      "frames": 96,
+      "secondsToRender": 4.68
+    },
+    "topics-sunset": {
+      "src": "mascot/assets/lipsync/topics-sunset.mp4",
+      "audioSha256": "9d47b0a271110bba9d7dc8eed9f4a476e08f234cef7a00b039c4cb781c6bab38",
+      "fps": 24.0,
+      "duration": 4.458333333333333,
+      "frames": 107,
+      "secondsToRender": 5.2
+    },
+    "topics-flowers": {
+      "src": "mascot/assets/lipsync/topics-flowers.mp4",
+      "audioSha256": "9d487790d1be85720b86f6e3df4d4a3408bd862d69bd6b9dd7428cd9e336c106",
+      "fps": 24.0,
+      "duration": 4.291666666666667,
+      "frames": 103,
+      "secondsToRender": 4.95
+    },
+    "topics-contact": {
+      "src": "mascot/assets/lipsync/topics-contact.mp4",
+      "audioSha256": "bcaf2a57b7ba7cf149c4fad4a6970bf07a56100d533baf08e33db093f24cbe0c",
+      "fps": 24.0,
+      "duration": 6.0,
+      "frames": 144,
+      "secondsToRender": 5.83
+    }
+  }
+}

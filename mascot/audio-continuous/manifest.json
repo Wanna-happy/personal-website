@@ -1,0 +1,440 @@
+{
+  "voice": "User-selected natural welcome voice",
+  "engine": "Qwen3-TTS",
+  "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "voiceClone": true,
+  "reference": "site/mascot/audio-natural/welcome-preview.wav",
+  "mode": "Continuous PCM paragraph playback; captions follow measured cues; 300 ms startup guard",
+  "items": {
+    "chapters-home": [
+      {
+        "text": "嗨，我是阮涵，欢迎来做客。",
+        "src": "mascot/audio-continuous/chapters-home.wav",
+        "duration": 2.66,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "mode": "icl",
+        "legacySrc": "mascot/audio-natural/chapters-home-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 2.96,
+        "paragraphDuration": 8.85,
+        "leadIn": 0.3
+      },
+      {
+        "text": "这里有我的经历、作品，还有一些生活片段。",
+        "src": "mascot/audio-continuous/chapters-home.wav",
+        "duration": 3.67,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "mode": "icl",
+        "legacySrc": "mascot/audio-natural/chapters-home-2.mp3",
+        "cueStart": 2.96,
+        "cueEnd": 6.63,
+        "paragraphDuration": 8.85,
+        "leadIn": 0.3
+      },
+      {
+        "text": "想先从哪里逛起？",
+        "src": "mascot/audio-continuous/chapters-home.wav",
+        "duration": 2.07,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "mode": "icl",
+        "legacySrc": "mascot/audio-natural/chapters-home-3.mp3",
+        "cueStart": 6.63,
+        "cueEnd": 8.85,
+        "paragraphDuration": 8.85,
+        "leadIn": 0.3
+      }
+    ],
+    "chapters-about": [
+      {
+        "text": "我现在在四川大学读社会保障硕士，也在探索 AI 产品。",
+        "src": "mascot/audio-continuous/chapters-about.wav",
+        "duration": 4.68,
+        "sourceStart": 0.0,
+        "sourceEnd": 4.679999999999998,
+        "legacySrc": "mascot/audio-selected/chapters-about-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 4.98,
+        "paragraphDuration": 9.09,
+        "leadIn": 0.3
+      },
+      {
+        "text": "这里还有我的运动和生活记录。",
+        "src": "mascot/audio-continuous/chapters-about.wav",
+        "duration": 2.215,
+        "sourceStart": 4.679999999999998,
+        "sourceEnd": 6.894999999999997,
+        "legacySrc": "mascot/audio-selected/chapters-about-2.mp3",
+        "cueStart": 4.98,
+        "cueEnd": 7.195,
+        "paragraphDuration": 9.09,
+        "leadIn": 0.3
+      },
+      {
+        "text": "一起认识一下我吧。",
+        "src": "mascot/audio-continuous/chapters-about.wav",
+        "duration": 1.745,
+        "sourceStart": 6.894999999999997,
+        "sourceEnd": 8.64,
+        "legacySrc": "mascot/audio-selected/chapters-about-3.mp3",
+        "cueStart": 7.195,
+        "cueEnd": 9.09,
+        "paragraphDuration": 9.09,
+        "leadIn": 0.3
+      }
+    ],
+    "chapters-experience": [
+      {
+        "text": "我做过迎宾机器人的对话调试，也负责过周报智能体的产品方案。",
+        "src": "mascot/audio-continuous/chapters-experience.wav",
+        "duration": 4.965,
+        "sourceStart": 0.0,
+        "sourceEnd": 4.964999999999999,
+        "legacySrc": "mascot/audio-selected/chapters-experience-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 5.265,
+        "paragraphDuration": 6.93,
+        "leadIn": 0.3
+      },
+      {
+        "text": "你想先听哪一段？",
+        "src": "mascot/audio-continuous/chapters-experience.wav",
+        "duration": 1.515,
+        "sourceStart": 4.964999999999999,
+        "sourceEnd": 6.48,
+        "legacySrc": "mascot/audio-selected/chapters-experience-2.mp3",
+        "cueStart": 5.265,
+        "cueEnd": 6.93,
+        "paragraphDuration": 6.93,
+        "leadIn": 0.3
+      }
+    ],
+    "chapters-works": [
+      {
+        "text": "这里有周报智能体和 AI 学习助手。",
+        "src": "mascot/audio-continuous/chapters-works.wav",
+        "duration": 2.72,
+        "sourceStart": 0.0,
+        "sourceEnd": 2.7199999999999966,
+        "legacySrc": "mascot/audio-selected/chapters-works-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 3.02,
+        "paragraphDuration": 7.65,
+        "leadIn": 0.3
+      },
+      {
+        "text": "你可以点开项目看详情，也可以让我先讲讲，它想解决什么问题。",
+        "src": "mascot/audio-continuous/chapters-works.wav",
+        "duration": 4.48,
+        "sourceStart": 2.7199999999999966,
+        "sourceEnd": 7.2,
+        "legacySrc": "mascot/audio-selected/chapters-works-2.mp3",
+        "cueStart": 3.02,
+        "cueEnd": 7.65,
+        "paragraphDuration": 7.65,
+        "leadIn": 0.3
+      }
+    ],
+    "chapters-contact": [
+      {
+        "text": "谢谢你来做客。",
+        "src": "mascot/audio-continuous/chapters-contact.wav",
+        "duration": 1.42,
+        "sourceStart": 0.0,
+        "sourceEnd": 1.4199999999999973,
+        "legacySrc": "mascot/audio-selected/chapters-contact-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 1.72,
+        "paragraphDuration": 8.53,
+        "leadIn": 0.3
+      },
+      {
+        "text": "如果你也关注 AI 产品，或者想聊聊合作和机会，欢迎给我写邮件。",
+        "src": "mascot/audio-continuous/chapters-contact.wav",
+        "duration": 5.31,
+        "sourceStart": 1.4199999999999973,
+        "sourceEnd": 6.729999999999997,
+        "legacySrc": "mascot/audio-selected/chapters-contact-2.mp3",
+        "cueStart": 1.72,
+        "cueEnd": 7.03,
+        "paragraphDuration": 8.53,
+        "leadIn": 0.3
+      },
+      {
+        "text": "很高兴认识你。",
+        "src": "mascot/audio-continuous/chapters-contact.wav",
+        "duration": 1.35,
+        "sourceStart": 6.729999999999997,
+        "sourceEnd": 8.08,
+        "legacySrc": "mascot/audio-selected/chapters-contact-3.mp3",
+        "cueStart": 7.03,
+        "cueEnd": 8.53,
+        "paragraphDuration": 8.53,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-study": [
+      {
+        "text": "我本科在西南政法大学学习行政管理，现在在四川大学读社会保障硕士。",
+        "src": "mascot/audio-continuous/topics-study.wav",
+        "duration": 5.76,
+        "sourceStart": 0.0,
+        "sourceEnd": 5.76,
+        "legacySrc": "mascot/audio-selected/topics-study-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 6.21,
+        "paragraphDuration": 6.21,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-focus": [
+      {
+        "text": "我主要关注 AI 智能体、大模型应用和具身智能。",
+        "src": "mascot/audio-continuous/topics-focus.wav",
+        "duration": 4.135,
+        "sourceStart": 0.0,
+        "sourceEnd": 4.134999999999996,
+        "legacySrc": "mascot/audio-selected/topics-focus-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 4.435,
+        "paragraphDuration": 8.21,
+        "leadIn": 0.3
+      },
+      {
+        "text": "我更在意这些能力能帮人解决什么实际问题。",
+        "src": "mascot/audio-continuous/topics-focus.wav",
+        "duration": 3.625,
+        "sourceStart": 4.134999999999996,
+        "sourceEnd": 7.76,
+        "legacySrc": "mascot/audio-selected/topics-focus-2.mp3",
+        "cueStart": 4.435,
+        "cueEnd": 8.21,
+        "paragraphDuration": 8.21,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-life": [
+      {
+        "text": "这里放着我的健身日常、日落和七里香花下的照片。",
+        "src": "mascot/audio-continuous/topics-life.wav",
+        "duration": 4.44,
+        "sourceStart": 0.0,
+        "sourceEnd": 4.439999999999997,
+        "legacySrc": "mascot/audio-selected/topics-life-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 4.74,
+        "paragraphDuration": 7.49,
+        "leadIn": 0.3
+      },
+      {
+        "text": "做产品之外，也认真生活。",
+        "src": "mascot/audio-continuous/topics-life.wav",
+        "duration": 2.6,
+        "sourceStart": 4.439999999999997,
+        "sourceEnd": 7.04,
+        "legacySrc": "mascot/audio-selected/topics-life-2.mp3",
+        "cueStart": 4.74,
+        "cueEnd": 7.49,
+        "paragraphDuration": 7.49,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-robot": [
+      {
+        "text": "在津安达，我调试过机器人的提示词和角色设定，也做了一百多轮实景验证。",
+        "src": "mascot/audio-continuous/topics-robot.wav",
+        "duration": 6.415,
+        "sourceStart": 0.0,
+        "sourceEnd": 6.414999999999997,
+        "legacySrc": "mascot/audio-selected/topics-robot-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 6.715,
+        "paragraphDuration": 10.53,
+        "leadIn": 0.3
+      },
+      {
+        "text": "模型的表现，最终要放到真实场景里检验。",
+        "src": "mascot/audio-continuous/topics-robot.wav",
+        "duration": 3.665,
+        "sourceStart": 6.414999999999997,
+        "sourceEnd": 10.08,
+        "legacySrc": "mascot/audio-selected/topics-robot-2.mp3",
+        "cueStart": 6.715,
+        "cueEnd": 10.53,
+        "paragraphDuration": 10.53,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-weekly": [
+      {
+        "text": "手工写周报很耗时，业务指标也比较分散。",
+        "src": "mascot/audio-continuous/topics-weekly.wav",
+        "duration": 3.68,
+        "sourceStart": 0.0,
+        "sourceEnd": 3.679999999999996,
+        "legacySrc": "mascot/audio-selected/topics-weekly-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 3.98,
+        "paragraphDuration": 9.81,
+        "leadIn": 0.3
+      },
+      {
+        "text": "我负责梳理周报智能体的能力边界和输出规范，并做出了可交互原型。",
+        "src": "mascot/audio-continuous/topics-weekly.wav",
+        "duration": 5.68,
+        "sourceStart": 3.679999999999996,
+        "sourceEnd": 9.36,
+        "legacySrc": "mascot/audio-selected/topics-weekly-2.mp3",
+        "cueStart": 3.98,
+        "cueEnd": 9.81,
+        "paragraphDuration": 9.81,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-learning": [
+      {
+        "text": "这个学习助手，是我借助 AI 独立动手做的探索。",
+        "src": "mascot/audio-continuous/topics-learning.wav",
+        "duration": 3.8,
+        "sourceStart": 0.0,
+        "sourceEnd": 3.8000000000000007,
+        "legacySrc": "mascot/audio-selected/topics-learning-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 4.1,
+        "paragraphDuration": 9.41,
+        "leadIn": 0.3
+      },
+      {
+        "text": "项目还在持续完善，我会把从想法到实现的过程记录在这里。",
+        "src": "mascot/audio-continuous/topics-learning.wav",
+        "duration": 5.16,
+        "sourceStart": 3.8000000000000007,
+        "sourceEnd": 8.96,
+        "legacySrc": "mascot/audio-selected/topics-learning-2.mp3",
+        "cueStart": 4.1,
+        "cueEnd": 9.41,
+        "paragraphDuration": 9.41,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-fitness": [
+      {
+        "text": "这是我的健身日常。",
+        "src": "mascot/audio-continuous/topics-fitness.wav",
+        "duration": 1.505,
+        "sourceStart": 0.0,
+        "sourceEnd": 1.5049999999999977,
+        "legacySrc": "mascot/audio-selected/topics-fitness-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 1.805,
+        "paragraphDuration": 3.97,
+        "leadIn": 0.3
+      },
+      {
+        "text": "保持力量，也保持专注。",
+        "src": "mascot/audio-continuous/topics-fitness.wav",
+        "duration": 2.015,
+        "sourceStart": 1.5049999999999977,
+        "sourceEnd": 3.52,
+        "legacySrc": "mascot/audio-selected/topics-fitness-2.mp3",
+        "cueStart": 1.805,
+        "cueEnd": 3.97,
+        "paragraphDuration": 3.97,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-sunset": [
+      {
+        "text": "这是我记录的日落时刻。",
+        "src": "mascot/audio-continuous/topics-sunset.wav",
+        "duration": 1.52,
+        "sourceStart": 0.0,
+        "sourceEnd": 1.5199999999999965,
+        "legacySrc": "mascot/audio-selected/topics-sunset-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 1.82,
+        "paragraphDuration": 4.45,
+        "leadIn": 0.3
+      },
+      {
+        "text": "在日落里，把视野放远一点。",
+        "src": "mascot/audio-continuous/topics-sunset.wav",
+        "duration": 2.48,
+        "sourceStart": 1.5199999999999965,
+        "sourceEnd": 4.0,
+        "legacySrc": "mascot/audio-selected/topics-sunset-2.mp3",
+        "cueStart": 1.82,
+        "cueEnd": 4.45,
+        "paragraphDuration": 4.45,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-flowers": [
+      {
+        "text": "这是七里香花下的生活片段。",
+        "src": "mascot/audio-continuous/topics-flowers.wav",
+        "duration": 2.3,
+        "sourceStart": 0.0,
+        "sourceEnd": 2.2999999999999967,
+        "legacySrc": "mascot/audio-selected/topics-flowers-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 2.6,
+        "paragraphDuration": 4.29,
+        "leadIn": 0.3
+      },
+      {
+        "text": "记住夏天的明亮。",
+        "src": "mascot/audio-continuous/topics-flowers.wav",
+        "duration": 1.54,
+        "sourceStart": 2.2999999999999967,
+        "sourceEnd": 3.84,
+        "legacySrc": "mascot/audio-selected/topics-flowers-2.mp3",
+        "cueStart": 2.6,
+        "cueEnd": 4.29,
+        "paragraphDuration": 4.29,
+        "leadIn": 0.3
+      }
+    ],
+    "topics-contact": [
+      {
+        "text": "页面上就是我的邮箱。",
+        "src": "mascot/audio-continuous/topics-contact.wav",
+        "duration": 1.53,
+        "sourceStart": 0.0,
+        "sourceEnd": 1.5300000000000002,
+        "legacySrc": "mascot/audio-selected/topics-contact-1.mp3",
+        "cueStart": 0,
+        "cueEnd": 1.83,
+        "paragraphDuration": 5.97,
+        "leadIn": 0.3
+      },
+      {
+        "text": "你可以点击写邮件，也可以复制地址，方便以后联系。",
+        "src": "mascot/audio-continuous/topics-contact.wav",
+        "duration": 3.99,
+        "sourceStart": 1.5300000000000002,
+        "sourceEnd": 5.52,
+        "legacySrc": "mascot/audio-selected/topics-contact-2.mp3",
+        "cueStart": 1.83,
+        "cueEnd": 5.97,
+        "paragraphDuration": 5.97,
+        "leadIn": 0.3
+      }
+    ]
+  },
+  "homeRevision": {
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+    "reference": "fb65837d-14e8-4591-8119-2dd14af0e5e8.mp4, first 3.2 seconds",
+    "mode": "ICL, whole paragraph",
+    "gain": 1.2829116813768793,
+    "cuts": [
+      0,
+      2.66,
+      6.33,
+      8.4
+    ],
+    "auditionStatus": "user-selected",
+    "selectedFile": "site/mascot/audio-natural/welcome-preview.wav",
+    "selectedSha256": "8878b48a329a33ced83a9222088fe48449ffa6788116f55e4d9083559edd30e3"
+  },
+  "referenceSha256": "8878b48a329a33ced83a9222088fe48449ffa6788116f55e4d9083559edd30e3"
+}

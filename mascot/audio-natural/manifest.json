@@ -1,0 +1,221 @@
+{
+  "voice": "Video reference / Qwen3-TTS Base",
+  "engine": "Qwen3-TTS",
+  "model": "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
+  "voiceClone": true,
+  "reference": "reference-explain.wav",
+  "mode": "x-vector-only",
+  "items": {
+    "chapters-home": [
+      {
+        "text": "嗨，我是阮涵，欢迎来做客。",
+        "src": "mascot/audio-natural/chapters-home-1.mp3",
+        "duration": 2.66,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "mode": "icl"
+      },
+      {
+        "text": "这里有我的经历、作品，还有一些生活片段。",
+        "src": "mascot/audio-natural/chapters-home-2.mp3",
+        "duration": 3.67,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "mode": "icl"
+      },
+      {
+        "text": "想先从哪里逛起？",
+        "src": "mascot/audio-natural/chapters-home-3.mp3",
+        "duration": 2.07,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+        "mode": "icl"
+      }
+    ],
+    "chapters-about": [
+      {
+        "text": "我现在在四川大学读社会保障硕士，也在探索 AI 产品。",
+        "src": "mascot/audio-clone/chapters-about-1.mp3",
+        "duration": 5.93
+      },
+      {
+        "text": "这里还有我的运动和生活记录。",
+        "src": "mascot/audio-clone/chapters-about-2.mp3",
+        "duration": 2.97
+      },
+      {
+        "text": "一起认识一下我吧。",
+        "src": "mascot/audio-clone/chapters-about-3.mp3",
+        "duration": 2.41
+      }
+    ],
+    "chapters-experience": [
+      {
+        "text": "我做过迎宾机器人的对话调试，也负责过周报智能体的产品方案。",
+        "src": "mascot/audio-clone/chapters-experience-1.mp3",
+        "duration": 5.85
+      },
+      {
+        "text": "你想先听哪一段？",
+        "src": "mascot/audio-clone/chapters-experience-2.mp3",
+        "duration": 1.85
+      }
+    ],
+    "chapters-works": [
+      {
+        "text": "这里有周报智能体和 AI 学习助手。",
+        "src": "mascot/audio-clone/chapters-works-1.mp3",
+        "duration": 3.53
+      },
+      {
+        "text": "你可以点开项目看详情，也可以让我先讲讲，它想解决什么问题。",
+        "src": "mascot/audio-clone/chapters-works-2.mp3",
+        "duration": 6.41
+      }
+    ],
+    "chapters-contact": [
+      {
+        "text": "谢谢你来做客。",
+        "src": "mascot/audio-clone/chapters-contact-1.mp3",
+        "duration": 1.69
+      },
+      {
+        "text": "如果你也关注 AI 产品，或者想聊聊合作和机会，欢迎给我写邮件。",
+        "src": "mascot/audio-clone/chapters-contact-2.mp3",
+        "duration": 6.01
+      },
+      {
+        "text": "很高兴认识你。",
+        "src": "mascot/audio-clone/chapters-contact-3.mp3",
+        "duration": 2.17
+      }
+    ],
+    "topics-study": [
+      {
+        "text": "我本科在西南政法大学学习行政管理，现在在四川大学读社会保障硕士。",
+        "src": "mascot/audio-clone/topics-study-1.mp3",
+        "duration": 6.97
+      }
+    ],
+    "topics-focus": [
+      {
+        "text": "我主要关注 AI 智能体、大模型应用和具身智能。",
+        "src": "mascot/audio-clone/topics-focus-1.mp3",
+        "duration": 5.37
+      },
+      {
+        "text": "我更在意这些能力能帮人解决什么实际问题。",
+        "src": "mascot/audio-clone/topics-focus-2.mp3",
+        "duration": 4.09
+      }
+    ],
+    "topics-life": [
+      {
+        "text": "这里放着我的健身日常、日落和七里香花下的照片。",
+        "src": "mascot/audio-clone/topics-life-1.mp3",
+        "duration": 5.37
+      },
+      {
+        "text": "做产品之外，也认真生活。",
+        "src": "mascot/audio-clone/topics-life-2.mp3",
+        "duration": 3.61
+      }
+    ],
+    "topics-robot": [
+      {
+        "text": "在津安达，我调试过机器人的提示词和角色设定，也做了一百多轮实景验证。",
+        "src": "mascot/audio-clone/topics-robot-1.mp3",
+        "duration": 7.85
+      },
+      {
+        "text": "模型的表现，最终要放到真实场景里检验。",
+        "src": "mascot/audio-clone/topics-robot-2.mp3",
+        "duration": 4.25
+      }
+    ],
+    "topics-weekly": [
+      {
+        "text": "手工写周报很耗时，业务指标也比较分散。",
+        "src": "mascot/audio-clone/topics-weekly-1.mp3",
+        "duration": 5.29
+      },
+      {
+        "text": "我负责梳理周报智能体的能力边界和输出规范，并做出了可交互原型。",
+        "src": "mascot/audio-clone/topics-weekly-2.mp3",
+        "duration": 6.57
+      }
+    ],
+    "topics-learning": [
+      {
+        "text": "这个学习助手，是我借助 AI 独立动手做的探索。",
+        "src": "mascot/audio-clone/topics-learning-1.mp3",
+        "duration": 5.53
+      },
+      {
+        "text": "项目还在持续完善，我会把从想法到实现的过程记录在这里。",
+        "src": "mascot/audio-clone/topics-learning-2.mp3",
+        "duration": 6.09
+      }
+    ],
+    "topics-fitness": [
+      {
+        "text": "这是我的健身日常。",
+        "src": "mascot/audio-clone/topics-fitness-1.mp3",
+        "duration": 2.49
+      },
+      {
+        "text": "保持力量，也保持专注。",
+        "src": "mascot/audio-clone/topics-fitness-2.mp3",
+        "duration": 2.41
+      }
+    ],
+    "topics-sunset": [
+      {
+        "text": "这是我记录的日落时刻。",
+        "src": "mascot/audio-clone/topics-sunset-1.mp3",
+        "duration": 2.97
+      },
+      {
+        "text": "在日落里，把视野放远一点。",
+        "src": "mascot/audio-clone/topics-sunset-2.mp3",
+        "duration": 3.29
+      }
+    ],
+    "topics-flowers": [
+      {
+        "text": "这是七里香花下的生活片段。",
+        "src": "mascot/audio-clone/topics-flowers-1.mp3",
+        "duration": 2.89
+      },
+      {
+        "text": "记住夏天的明亮。",
+        "src": "mascot/audio-clone/topics-flowers-2.mp3",
+        "duration": 1.85
+      }
+    ],
+    "topics-contact": [
+      {
+        "text": "页面上就是我的邮箱。",
+        "src": "mascot/audio-clone/topics-contact-1.mp3",
+        "duration": 2.33
+      },
+      {
+        "text": "你可以点击写邮件，也可以复制地址，方便以后联系。",
+        "src": "mascot/audio-clone/topics-contact-2.mp3",
+        "duration": 4.65
+      }
+    ]
+  },
+  "homeRevision": {
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+    "reference": "fb65837d-14e8-4591-8119-2dd14af0e5e8.mp4, first 3.2 seconds",
+    "mode": "ICL, whole paragraph",
+    "gain": 1.2829116813768793,
+    "cuts": [
+      0,
+      2.66,
+      6.33,
+      8.4
+    ],
+    "auditionStatus": "user-selected",
+    "selectedFile": "site/mascot/audio-natural/welcome-preview.wav",
+    "selectedSha256": "8878b48a329a33ced83a9222088fe48449ffa6788116f55e4d9083559edd30e3"
+  }
+}

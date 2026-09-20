@@ -1,259 +1,85 @@
-const defaultPortraitUrl = "assets/ruan-han-cutout.png";
-const photoStorageKey = "ruan-han-portfolio-portrait";
-const maxPhotoBytes = 5 * 1024 * 1024;
+/* Existing portfolio interactions, adapted to chapter pages. */
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelector('#year').textContent = new Date().getFullYear();
+  const reveal = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); reveal.unobserve(entry.target); }
+  }), { threshold: .08 });
+  document.querySelectorAll('.reveal, .line-reveal').forEach(el => reveal.observe(el));
 
-document.querySelector("#year").textContent = new Date().getFullYear();
+  const cursor = document.querySelector('.cursor');
+  if (cursor && matchMedia('(hover: hover) and (pointer: fine)').matches && !reduced.matches) {
+    const dot = cursor.querySelector('.cursor__dot'), ring = cursor.querySelector('.cursor__ring');
+    ring.style.transition = 'transform .12s ease-out';
+    window.addEventListener('pointermove', e => {
+      const position = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+      dot.style.transform = position; ring.style.transform = position;
+    }, { passive: true });
+  } else if (cursor) cursor.hidden = true;
 
-/* === 菜单 === */
-const menuButton = document.querySelector(".menu-button");
-const navigation = document.querySelector(".site-nav");
-const closeMenu = () => { menuButton.setAttribute("aria-expanded", "false"); navigation.classList.remove("is-open"); document.body.classList.remove("menu-open"); };
-menuButton.addEventListener("click", () => { const isOpen = menuButton.getAttribute("aria-expanded") === "true"; menuButton.setAttribute("aria-expanded", String(!isOpen)); navigation.classList.toggle("is-open", !isOpen); document.body.classList.toggle("menu-open", !isOpen); });
-navigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-
-/* === 滚动揭示（含逐行揭示） === */
-const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); } }), { threshold: 0.12 });
-document.querySelectorAll(".reveal, .line-reveal").forEach((element) => { element.style.setProperty("--delay", `${element.dataset.delay || 0}ms`); revealObserver.observe(element); });
-
-/* === 导航当前区块高亮 === */
-const navLinks = [...navigation.querySelectorAll("a")];
-const sectionObserver = new IntersectionObserver((entries) => { const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]; if (active) navLinks.forEach((link) => link.classList.toggle("is-active", link.hash === `#${active.target.id}`)); }, { rootMargin: "-35% 0px -55%", threshold: [0, 0.25, 0.5] });
-navLinks.map((link) => document.querySelector(link.hash)).filter(Boolean).forEach((section) => sectionObserver.observe(section));
-
-/* === 自定义光标 === */
-const cursor = document.querySelector(".cursor");
-if (cursor && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-  const dot = cursor.querySelector(".cursor__dot");
-  const ring = cursor.querySelector(".cursor__ring");
-  let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
-  window.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`; });
-  (function ringLoop() { rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18; ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`; requestAnimationFrame(ringLoop); })();
-  document.querySelectorAll("a, button, .portrait-card__image, [data-project]").forEach((el) => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
-    el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
-  });
-  window.addEventListener("mousedown", () => cursor.classList.add("is-down"));
-  window.addEventListener("mouseup", () => cursor.classList.remove("is-down"));
-}
-
-/* === 磁性按钮 === */
-document.querySelectorAll(".magnetic").forEach((el) => {
-  const strength = 0.3;
-  el.addEventListener("mousemove", (e) => {
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * strength;
-    const y = (e.clientY - rect.top - rect.height / 2) * strength;
-    el.style.transform = `translate(${x}px, ${y}px)`;
-  });
-  el.addEventListener("mouseleave", () => { el.style.transform = "translate(0,0)"; });
-});
-
-/* === 导航栏随滚动自动隐藏/显示 === */
-const siteHeader = document.querySelector(".site-header");
-let lastY = 0;
-window.addEventListener("scroll", () => {
-  const y = window.scrollY;
-  if (y > lastY && y > 240) siteHeader.classList.add("is-hidden");
-  else siteHeader.classList.remove("is-hidden");
-  lastY = y;
-}, { passive: true });
-
-/* === 数字计数动画 === */
-const countObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-  if (entry.isIntersecting) {
-    const el = entry.target;
-    const target = parseInt(el.dataset.count, 10) || 0;
-    const dur = 1300;
-    const startT = performance.now();
-    el.textContent = 0;
-    (function tick(now) {
-      const p = Math.min((now - startT) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target);
-      if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = target;
-    })(startT);
-    countObserver.unobserve(el);
-  }
-}), { threshold: 0.5 });
-document.querySelectorAll(".count").forEach((el) => countObserver.observe(el));
-
-/* === 灵动性：鼠标视差、轨迹跟随 === */
-const heroSection = document.querySelector(".hero");
-const portraitCard = document.querySelector(".portrait-card");
-const portraitImg = document.querySelector(".portrait-card__image");
-const heroCopy = document.querySelector(".hero__copy");
-const heroSticker = document.querySelector(".hero-sticker");
-const ambientOrbs = [...document.querySelectorAll(".ambient__orb")];
-const sparks = [...document.querySelectorAll(".spark")];
-let pointerX = 0.5;
-let pointerY = 0.5;
-let currentX = 0.5;
-let currentY = 0.5;
-let rafId = null;
-
-function onPointerMove(event) {
-  const rect = heroSection?.getBoundingClientRect();
-  if (!rect || rect.width === 0) return;
-  const x = (event.clientX - rect.left) / rect.width;
-  const y = (event.clientY - rect.top) / rect.height;
-  pointerX = Math.max(0, Math.min(1, x));
-  pointerY = Math.max(0, Math.min(1, y));
-  if (!rafId) tickParallax();
-}
-function tickParallax() {
-  currentX += (pointerX - currentX) * 0.08;
-  currentY += (pointerY - currentY) * 0.08;
-  const dx = (currentX - 0.5) * 2;
-  const dy = (currentY - 0.5) * 2;
-  if (portraitCard) {
-    portraitCard.style.setProperty("--portrait-tx", `${dx * 18}px`);
-    portraitCard.style.setProperty("--portrait-ty", `${dy * 14}px`);
-    portraitCard.style.setProperty("--portrait-rotX", `${-dy * 4}deg`);
-    portraitCard.style.setProperty("--portrait-rotY", `${dx * 6}deg`);
-  }
-  if (heroCopy) { heroCopy.style.transform = `translate(${dx * -8}px, ${dy * -6}px)`; }
-  if (heroSticker) { heroSticker.style.transform = `rotate(${-5 + dx * 6}deg) translate(${dx * 10}px, ${dy * 8}px)`; }
-  ambientOrbs.forEach((orb, index) => {
-    const depth = [0.4, 0.55, 0.7][index] || 0.5;
-    orb.style.transform = `translate(${dx * 60 * depth}px, ${dy * 45 * depth}px)`;
-  });
-  sparks.forEach((spark, index) => {
-    const depth = index === 0 ? 1.4 : 1.0;
-    spark.style.marginLeft = `${dx * -22 * depth}px`;
-    spark.style.marginTop = `${dy * -16 * depth}px`;
-  });
-  if (Math.abs(pointerX - currentX) > 0.0005 || Math.abs(pointerY - currentY) > 0.0005) rafId = requestAnimationFrame(tickParallax);
-  else rafId = null;
-}
-if (heroSection) {
-  heroSection.addEventListener("mousemove", onPointerMove);
-  heroSection.addEventListener("mouseleave", () => { pointerX = 0.5; pointerY = 0.5; if (!rafId) tickParallax(); });
-}
-
-/* 滚动视差 - 人像在 hero 内轻移 */
-function onScrollParallax() {
-  if (!heroSection) return;
-  const rect = heroSection.getBoundingClientRect();
-  const progress = Math.max(-0.2, Math.min(1, -rect.top / rect.height));
-  if (portraitImg) portraitImg.style.setProperty("--portrait-scroll", `${progress * 22}px`);
-  if (heroCopy) heroCopy.style.setProperty("--copy-scroll", `${progress * 32}px`);
-}
-window.addEventListener("scroll", onScrollParallax, { passive: true });
-
-/* hero-sticker 轻微呼吸感 */
-if (heroSticker) {
-  let stickerT = 0;
-  (function stickerBreath() {
-    stickerT += 0.018;
-    heroSticker.style.setProperty("--sticker-bob", `${Math.sin(stickerT) * 3}px`);
-    heroSticker.style.setProperty("--sticker-rot", `${Math.sin(stickerT * 0.7) * 1.2}deg`);
-    requestAnimationFrame(stickerBreath);
-  })();
-}
-
-/* spark 随机飘动 */
-sparks.forEach((spark) => {
-  let sxT = Math.random() * Math.PI * 2;
-  const sxSpeed = 0.6 + Math.random() * 0.5;
-  (function animate() {
-    sxT += 0.018 * sxSpeed;
-    spark.style.setProperty("--spark-x", `${Math.sin(sxT) * 6}px`);
-    spark.style.setProperty("--spark-y", `${Math.cos(sxT * 0.7) * 8}px`);
-    spark.style.setProperty("--spark-r", `${Math.sin(sxT * 0.5) * 18}deg`);
-    requestAnimationFrame(animate);
-  })();
-});
-
-/* Hero h1 文字逐字入场 */
-const heroTitle = document.querySelector(".hero h1");
-if (heroTitle) {
-  heroTitle.querySelectorAll("span").forEach((line) => {
-    if (line.querySelector("em") || line.classList.contains("hero__serif") || line.classList.contains("hero__accent")) return;
-    const text = line.textContent;
-    line.textContent = "";
-    [...text].forEach((char, index) => {
-      const span = document.createElement("span");
-      span.className = "char";
-      span.textContent = char;
-      span.style.setProperty("--char-delay", `${index * 38}ms`);
-      line.appendChild(span);
-    });
-  });
-}
-
-/* === 照片上传 / 拖拽替换 === */
-const portraitInput = document.querySelector("#portrait-input");
-const portraitImage = document.querySelector("#portrait-image");
-const portraitRemove = document.querySelector("#portrait-remove");
-const portraitHint = document.querySelector("#portrait-hint");
-const photoDropzone = document.querySelector("#photo-dropzone");
-function showPhoto(source, isCustom = false) { portraitImage.src = source; portraitRemove.disabled = !isCustom; portraitHint.textContent = isCustom ? "已保存到当前浏览器，可随时恢复默认" : "校园里的日常瞬间"; }
-function restoreDefaultPhoto() { localStorage.removeItem(photoStorageKey); portraitInput.value = ""; showPhoto(defaultPortraitUrl); }
-function loadPhoto(file) {
-  if (!file) return;
-  if (!file.type.startsWith("image/")) { portraitHint.textContent = "请选择 PNG、JPG 或 WebP 图片"; return; }
-  if (file.size > maxPhotoBytes) { portraitHint.textContent = "照片请控制在 5MB 以内"; return; }
-  const reader = new FileReader();
-  reader.onload = () => { try { localStorage.setItem(photoStorageKey, reader.result); } catch {} showPhoto(reader.result, true); };
-  reader.readAsDataURL(file);
-}
-try { const savedPhoto = localStorage.getItem(photoStorageKey); showPhoto(savedPhoto || defaultPortraitUrl, Boolean(savedPhoto)); } catch { showPhoto(defaultPortraitUrl); }
-portraitInput.addEventListener("change", () => loadPhoto(portraitInput.files[0]));
-portraitRemove.addEventListener("click", restoreDefaultPhoto);
-portraitImage.addEventListener("click", () => portraitInput.click());
-["dragenter", "dragover"].forEach((name) => photoDropzone.addEventListener(name, (event) => { event.preventDefault(); photoDropzone.classList.add("is-dragging"); }));
-["dragleave", "drop"].forEach((name) => photoDropzone.addEventListener(name, (event) => { event.preventDefault(); photoDropzone.classList.remove("is-dragging"); }));
-photoDropzone.addEventListener("drop", (event) => loadPhoto(event.dataTransfer.files[0]));
-
-/* === 项目详情弹窗 === */
-const projectDialog = document.querySelector("#project-dialog");
-const projectGithub = document.querySelector("#project-github");
-document.querySelectorAll("[data-project]").forEach((button) => button.addEventListener("click", () => {
-  const projectLink = button.dataset.projectLink?.trim();
-  document.querySelector("#project-dialog-title").textContent = button.dataset.project;
-  document.querySelector("#project-dialog-type").textContent = button.dataset.projectType;
-  document.querySelector("#project-dialog-description").textContent = button.dataset.projectDescription;
-  projectGithub.href = projectLink || "";
-  projectGithub.textContent = projectLink ? "查看 GitHub 项目 ↗" : "GitHub 链接待添加";
-  projectGithub.setAttribute("aria-disabled", String(!projectLink));
-  projectDialog.showModal();
-}));
-document.querySelector(".project-dialog__close").addEventListener("click", () => projectDialog.close());
-document.querySelector("#project-contact").addEventListener("click", () => projectDialog.close());
-projectDialog.addEventListener("click", (event) => { if (event.target === projectDialog) projectDialog.close(); });
-
-/* === 气泡按钮：悬停时气泡从光标位置展开并填充 === */
-document.querySelectorAll(".button").forEach((el) => {
-  el.addEventListener("mousemove", (e) => {
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty("--bx", `${e.clientX - rect.left}px`);
-    el.style.setProperty("--by", `${e.clientY - rect.top}px`);
-  });
-  el.addEventListener("mouseleave", () => { el.style.setProperty("--by", "120%"); });
-});
-
-/* === about 区人像揭示：鼠标掠过从素面显露彩色 === */
-const aboutReveal = document.querySelector("#about-reveal");
-if (aboutReveal) {
-  const setReveal = (x, y, r) => {
-    aboutReveal.style.setProperty("--reveal-x", x + "%");
-    aboutReveal.style.setProperty("--reveal-y", y + "%");
-    aboutReveal.style.setProperty("--reveal-r", r + "px");
+  const dialog = document.querySelector('#project-dialog'), github = document.querySelector('#project-github');
+  const stories = {
+    weekly: {
+      problem:'运营人员手工撰写周报耗时，管理层查看业务指标分散。',
+      process:'我梳理了 Agent 的能力边界、触发条件与输出规范，独立完成周报自动生成和指标可视化的 HTML 可交互原型，并参与 API 接入与开发协作。',
+      result:'目前展示的是可演示、可验证的产品方案与原型。',
+      narration:'我做这个项目时，先明确了周报该在什么情况下生成、应该包含什么，再把这些规则落进可以点击体验的原型中。'
+    },
+    learning: {
+      problem:'这是面向个人学习场景的 AI 产品探索。',
+      process:'我独立用 Vibe Coding 把想法逐步做成可体验的产品。',
+      result:'项目持续完善中，后续会补充设计、实现过程与项目仓库。',
+      narration:'这是我自己动手做的学习助手。我还在持续完善它，也会把从想法到实现的过程记录下来。'
+    }
   };
-  aboutReveal.addEventListener("mouseenter", (e) => {
-    const rect = aboutReveal.getBoundingClientRect();
-    setReveal(((e.clientX - rect.left) / rect.width) * 100, ((e.clientY - rect.top) / rect.height) * 100, 150);
+  Object.assign(stories,Object.fromEntries((window.PORTFOLIO_CONTENT?.projects||[]).map(p=>[p.id,{problem:p.problem,process:p.process,result:p.result,narration:p.narration}])));
+  let selectedProject='weekly';
+  const renderSection = section => {
+    document.querySelector('#project-story').textContent=stories[selectedProject][section];
+    document.querySelectorAll('[data-project-section]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.projectSection===section)));
+    if(dialog.open&&dialog.classList.contains('guided-preview')){
+      const story=document.querySelector('#project-story');
+      dialog.scrollTo({top:Math.max(0,story.offsetTop-150),behavior:reduced.matches?'instant':'smooth'});
+    }
+  };
+  document.querySelectorAll('[data-project-section]').forEach(b=>b.addEventListener('click',()=>renderSection(b.dataset.projectSection)));
+  document.querySelector('#project-explain').addEventListener('click',e=>{
+    const p=document.querySelector('#project-explanation');p.hidden=!p.hidden;
+    p.textContent=stories[selectedProject].narration;e.currentTarget.setAttribute('aria-expanded',String(!p.hidden));
   });
-  aboutReveal.addEventListener("mousemove", (e) => {
-    const rect = aboutReveal.getBoundingClientRect();
-    setReveal(((e.clientX - rect.left) / rect.width) * 100, ((e.clientY - rect.top) / rect.height) * 100, 168);
+  function openProject(id,{guided=false}={}){
+    const button=[...document.querySelectorAll('[data-project]')].find(b=>b.dataset.projectId===id);if(!button)return;
+    if(dialog.open)dialog.close();
+    document.querySelector('#project-dialog-title').textContent = button.dataset.project;
+    document.querySelector('#project-dialog-type').textContent = button.dataset.projectType;
+    document.querySelector('#project-dialog-description').textContent = button.dataset.projectDescription;
+    const link = button.dataset.projectLink?.trim();
+    github.hidden = !link;
+    github.href = link || '';
+    github.textContent = link ? '查看 GitHub 项目 ↗' : 'GitHub 链接待添加';
+    github.setAttribute('aria-disabled', String(!link));
+    selectedProject=button.dataset.projectId in stories?button.dataset.projectId:'weekly';renderSection('problem');
+    document.querySelector('#project-explanation').hidden=true;
+    document.querySelector('#project-explain').setAttribute('aria-expanded','false');
+    dialog.classList.toggle('guided-preview',guided);
+    if(guided)dialog.show();else dialog.showModal();
+    document.dispatchEvent(new CustomEvent('projectopen',{detail:{guided,id:selectedProject}}));
+  }
+  document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>openProject(button.dataset.projectId)));
+  document.querySelectorAll('.work-card').forEach(card=>card.addEventListener('click',event=>{
+    if(event.target.closest('button,a'))return;
+    openProject(card.querySelector('[data-project]').dataset.projectId);
+  }));
+  window.portfolioProjects={open:openProject,section:renderSection,close:()=>{if(dialog.open)dialog.close();},get current(){return selectedProject;}};
+  dialog.addEventListener('close',()=>document.dispatchEvent(new Event('projectclose')));
+  document.querySelector('.project-dialog__close').addEventListener('click', () => dialog.close());
+  document.querySelector('#project-contact').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', e => {
+    const r = dialog.getBoundingClientRect();
+    if (e.target === dialog && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) dialog.close();
   });
-  aboutReveal.addEventListener("mouseleave", () => setReveal(50, 50, 0));
-  aboutReveal.addEventListener("touchstart", (e) => {
-    const rect = aboutReveal.getBoundingClientRect();
-    const t = e.touches[0];
-    setReveal(((t.clientX - rect.left) / rect.width) * 100, ((t.clientY - rect.top) / rect.height) * 100, 168);
-  }, { passive: true });
-  aboutReveal.addEventListener("touchend", () => setReveal(50, 50, 0), { passive: true });
-}
+  document.querySelector('#copy-email').addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(window.PORTFOLIO_CONTENT?.profile.email||'1487253258@qq.com');document.querySelector('#copy-status').textContent='邮箱已复制';document.dispatchEvent(new CustomEvent('hostfeedback',{detail:{topic:'contact',text:'邮箱复制好了，期待收到你的消息。'}}));}
+    catch{document.querySelector('#copy-status').textContent='请长按或选中邮箱地址复制。';}
+  });
+})();

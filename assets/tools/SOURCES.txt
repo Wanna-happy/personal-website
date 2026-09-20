@@ -1,0 +1,7 @@
+modao: modao.svg <- https://cdn-yunyin.modao.cc/modao-logo.svg
+axure: axure.png <- https://www.axure.com/images/2026/01/Axure_RP_icon.png
+codex: codex.svg <- https://developers.openai.com/favicon.svg
+claude: claude.svg <- https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/claude-color.svg
+workbuddy: workbuddy.svg <- https://download.codebuddy.cn/web/workbuddy/e64b8fb4bc34aa55029abb007f83b311b08261f3/assets/logo.svg
+python: python.svg <- https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/icons/python/python-original.svg
+Brand identities belong to their respective owners. Used to identify user-confirmed tools.

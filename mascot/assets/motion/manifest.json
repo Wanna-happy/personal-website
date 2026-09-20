@@ -1,0 +1,99 @@
+{
+  "idle": {
+    "source": "40f8647a-e6e0-418d-9803-5788ee4a140e.mp4",
+    "start": 8.6,
+    "end": 10.0,
+    "duration": 1.0833333333333333,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 90375,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "welcome": {
+    "source": "b547d3db-0d70-4200-81bd-7ad76b86840a.mp4",
+    "start": 3.9,
+    "end": 7.25,
+    "duration": 3.3333333333333335,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 237336,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "acknowledge": {
+    "source": "b547d3db-0d70-4200-81bd-7ad76b86840a.mp4",
+    "start": 0,
+    "end": 2.5,
+    "duration": 2.5,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 147915,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "present": {
+    "source": "772376c7-3698-402b-881c-7ab1169240d3.mp4",
+    "start": 3.45,
+    "end": 15.0,
+    "duration": 11.541666666666666,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 774379,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "walk-depart": {
+    "source": "40f8647a-e6e0-418d-9803-5788ee4a140e.mp4",
+    "start": 0.9,
+    "end": 3.1,
+    "duration": 2.2083333333333335,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 174914,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "walk-arrive": {
+    "source": "40f8647a-e6e0-418d-9803-5788ee4a140e.mp4",
+    "start": 6.5,
+    "end": 9.1,
+    "duration": 2.5833333333333335,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 222085,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "run-depart": {
+    "source": "964f45bd-4d65-4d3b-9b2d-d0b6bdecc0ea.mp4",
+    "start": 0.55,
+    "end": 3.05,
+    "duration": 2.5,
+    "width": 512,
+    "height": 768,
+    "fps": 24.0,
+    "bytes": 353664,
+    "processing": "green screen cleanup, torso stabilization, common scale and ground line; silent H.264"
+  },
+  "present-brief": {
+    "source": "present.mp4",
+    "start": 0.1,
+    "duration": 3.3,
+    "width": 512,
+    "height": 768,
+    "fps": 24,
+    "bytes": 217337,
+    "processing": "short one-shot gesture from existing footage; no generated motion"
+  },
+  "present-open": {
+    "source": "present.mp4",
+    "start": 2.8,
+    "duration": 2.5,
+    "width": 512,
+    "height": 768,
+    "fps": 24,
+    "bytes": 165956,
+    "processing": "short one-shot gesture from existing footage; no generated motion"
+  }
+}

@@ -1,0 +1,7 @@
+(() => {
+ const dialog=document.querySelector('#project-dialog'),zone=document.createElement('section');zone.className='project-media';zone.hidden=true;zone.setAttribute('aria-label','项目展示');dialog.querySelector('.project-dialog__actions').before(zone);
+ document.addEventListener('projectopen',event=>{const record=window.PORTFOLIO_CONTENT?.projects.find(p=>p.id===event.detail.id);zone.replaceChildren();zone.hidden=!(record?.slides?.length||record?.pdf);if(zone.hidden)return;
+ if(record.slides?.length){let index=0;const image=document.createElement('img'),controls=document.createElement('div'),prev=document.createElement('button'),next=document.createElement('button'),count=document.createElement('span');prev.type=next.type='button';prev.textContent='← 上一页';next.textContent='下一页 →';controls.className='project-slide-controls';count.setAttribute('aria-live','polite');const draw=()=>{image.src=record.slides[index];image.alt=record.title+' · 第 '+(index+1)+' 页';count.textContent=`${index+1} / ${record.slides.length}`;prev.disabled=index===0;next.disabled=index===record.slides.length-1;};prev.onclick=()=>{index--;draw();};next.onclick=()=>{index++;draw();};controls.append(prev,count,next);zone.append(image,controls);draw();}
+ if(record.pdf){const a=document.createElement('a');a.href=record.pdf;a.target='_blank';a.rel='noopener';a.className='context-talk';a.textContent='打开完整项目 PDF ↗';zone.append(a);}
+ });
+})();

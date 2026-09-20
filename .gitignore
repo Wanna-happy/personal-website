@@ -14,3 +14,14 @@ desktop.ini
 # 编辑器
 .idea/
 .vscode/
+
+# Local credentials, session files and unpublished backups
+*.private.json
+.env
+.env.*
+!.env.example
+admin-auth.json
+drafts/
+checks/
+models/
+tools/model-cache/

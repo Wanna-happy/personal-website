@@ -1,0 +1,14 @@
+{
+  "source": "964f45bd-4d65-4d3b-9b2d-d0b6bdecc0ea.mp4",
+  "sourceStart": 3.0416666666666665,
+  "sourceEnd": 3.4583333333333335,
+  "sourceFps": 24.0,
+  "outputFps": 20,
+  "framesPerCycle": 10,
+  "cycleSeconds": 0.5,
+  "repetitions": 32,
+  "legWeightedSeamError": 0.05706564252020393,
+  "boundaryToMedianMotion": 0.7738793027881435,
+  "interpolation": "none",
+  "cameraScale": "linear trend, no foot-based per-frame scaling"
+}

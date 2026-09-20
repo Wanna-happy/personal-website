@@ -1,0 +1,75 @@
+[hidden] { display:none!important }
+.about__info article:nth-child(3) { grid-column:1/-1 }
+.skills-showcase { margin:70px 0 0;scroll-margin-top:32px }
+.skills-heading { margin-bottom:32px }
+.skills-heading .section-index { font-size:22px;margin-bottom:22px }
+.skills-heading h2 { font-size:28px;font-weight:500;display:flex;align-items:baseline;gap:18px }
+.skills-heading h2 span { font:13px var(--mono);letter-spacing:.08em;color:var(--muted) }
+.skills-heading>p:last-child { font-size:14px;line-height:1.9;color:var(--muted);margin-top:16px }
+.tool-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;list-style:none;padding:0;margin:0 }
+.tool-card { min-height:208px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:25px 12px;border:1px solid #ffffff14;border-radius:28px;background:#171620;transition:transform .22s ease,border-color .22s ease,background .22s ease }
+.tool-card:hover,.tool-card:focus-visible { transform:translateY(-5px);border-color:#b698ed80;background:#1e1b2a }
+.tool-icon { display:flex;align-items:center;justify-content:center;width:94px;height:94px;border-radius:22px;background:#24212e;margin-bottom:6px }
+.tool-icon img { width:64px;height:64px;object-fit:contain }
+.tool-card strong { font-size:16px;font-weight:500;color:var(--ink) }
+.tool-card>span:not(.tool-icon):not(.sr-only) { font-size:11px;color:var(--muted) }
+.skill-tags { padding:0;margin:25px 0 0;list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:12px 20px;color:var(--teal);font-size:12px }
+.work-card { cursor:pointer }
+@media(max-width:760px){.skills-showcase{margin-top:45px}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tool-card{min-height:175px;border-radius:23px;padding:20px 8px}.tool-icon{width:72px;height:72px;border-radius:18px}.tool-icon img{width:52px;height:52px}.skills-heading h2{font-size:25px}.skill-tags{gap:10px 16px;font-size:11px}}
+.welcome { min-height:100svh; display:grid; grid-template-columns:1.15fr 1fr; gap:6%; align-items:center; padding:80px 0 100px; position:relative }
+.welcome-eyebrow { font:11px var(--mono); letter-spacing:.12em; color:var(--teal); margin:0 0 32px }
+.welcome h1 { font-size:clamp(56px,6.8vw,104px); line-height:1.2; letter-spacing:-.055em; margin:0 0 25px; font-weight:600 }
+.welcome h1 em { color:var(--accent); font-style:normal }
+.welcome-note { font-size:15px; color:var(--muted); line-height:1.9 }
+.welcome-actions { display:flex; gap:30px; align-items:center; margin-top:34px }
+.welcome-primary { background:var(--accent); color:#16121f; border:1px solid var(--accent); padding:16px 24px; border-radius:30px; font-size:14px; font-weight:600 }
+.welcome-primary:hover { background:#d4beff; transform:translateY(-2px) }
+.welcome-primary span { margin-left:28px }
+.welcome-secondary { font-size:13px; border-bottom:1px solid var(--muted); padding:9px 0 }
+.welcome-secondary span { margin-left:15px }
+.welcome-footnote { font-size:11px; color:var(--muted); margin-top:25px }
+.welcome-stage { position:relative; display:flex; flex-direction:column; align-items:center; padding-top:50px }
+.welcome-character { padding:0; border:0; background:none; width:min(100%,490px); height:min(63vh,620px); cursor:pointer }
+.avatar-canvas { display:block; width:100%; height:100%; object-fit:contain }
+.welcome-hello { position:absolute; z-index:1; top:0; right:0; border:1px solid #474051; background:#211d2cd9; border-radius:20px 20px 20px 3px; padding:15px 20px; font-size:14px; color:var(--ink) }
+.welcome-hello span { display:block; font-size:11px; color:var(--muted); margin-top:6px }
+.welcome-name { font:12px var(--mono); letter-spacing:.18em; margin:8px 0 0; text-align:center }
+.welcome-name span { display:block; color:var(--muted); font:10px var(--sans); letter-spacing:.06em; margin-top:7px }
+.welcome-bottom { position:absolute; bottom:26px; width:100%; display:flex; justify-content:space-between; border-top:1px solid var(--line); padding-top:20px; font:10px var(--mono); color:var(--muted) }
+body[data-current-page=home] .site-footer, body[data-current-page=home]>ruan-mascot { display:none!important }
+[data-page]:not(.welcome) { padding-top:70px; padding-bottom:35px; min-height:calc(100svh - 100px) }
+.chapter-intro { max-width:740px; font-size:16px; line-height:1.95; color:var(--muted); margin-top:28px }
+.chapter-footer { display:flex; justify-content:space-between; gap:20px; border-top:1px solid var(--line); margin-top:65px; padding:25px 0 0; color:var(--teal); font-size:13px }
+.chapter-footer a { padding:10px 0 }
+.experience { display:grid; grid-template-columns:.8fr 1.2fr; column-gap:64px; align-items:start }
+.experience>.section-heading { position:sticky; top:65px }
+.experience .section-heading h2 { font-size:clamp(40px,4.1vw,72px); line-height:1.08; margin-top:30px }
+.experience-intro { color:var(--muted); line-height:1.9; font-size:15px; margin-top:28px; max-width:300px }
+.experience .chapter-footer { grid-column:1/-1 }
+@media(min-width:1200px) { main>[data-page]:not(.welcome) { width:calc(100% - 430px); max-width:1350px; margin-left:5.5%; margin-right:350px } .site-footer { width:calc(100% - 430px); margin-left:5.5% } }
+@media(max-width:1199px) { [data-page]:not(.welcome) { padding-bottom:330px } }
+@media(max-width:760px) {
+ .welcome { grid-template-columns:1fr; padding:45px 0 85px; align-content:start; gap:15px }
+ .welcome h1 { font-size:56px; margin-bottom:18px }
+ .welcome-eyebrow { font-size:9px; margin-bottom:22px }
+ .welcome-note { font-size:13px }
+ .welcome-actions { margin-top:22px; gap:26px }
+ .welcome-primary { font-size:13px; padding:13px 20px }
+ .welcome-footnote { display:none }
+ .welcome-stage { padding-top:15px; margin-top:15px }
+ .welcome-character { height:350px; width:270px }
+ .welcome-hello { top:8px; right:-2px; font-size:11px; max-width:160px; padding:11px 13px }
+ .welcome-hello span { font-size:10px }
+ .welcome-name { font-size:10px }
+ .welcome-name span { display:none }
+ .welcome-bottom { font-size:8px; gap:25px; bottom:20px }
+ .welcome-bottom span:first-child { max-width:145px }
+ [data-page]:not(.welcome) { padding-top:38px }
+ .chapter-intro { font-size:14px }
+ .experience { display:block }
+ .experience>.section-heading { position:static }
+ .experience .section-heading h2 br { display:none }
+ .experience .section-heading h2 { font-size:42px }
+ .experience-intro { max-width:none }
+ .chapter-footer { font-size:12px }
+}

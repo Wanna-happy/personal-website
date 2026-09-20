@@ -1,0 +1,165 @@
+﻿{
+    "voice":  "Microsoft Kangkang",
+    "language":  "zh-CN",
+    "engine":  "Windows Speech Synthesis",
+    "items":  {
+                  "chapters-home":  [
+                                        {
+                                            "text":  "嗨，我是阮涵，欢迎来做客。",
+                                            "wav":  "chapters-home-1.wav"
+                                        },
+                                        {
+                                            "text":  "这里有我的经历、作品，还有一些生活片段。",
+                                            "wav":  "chapters-home-2.wav"
+                                        },
+                                        {
+                                            "text":  "想先从哪里逛起？",
+                                            "wav":  "chapters-home-3.wav"
+                                        }
+                                    ],
+                  "chapters-about":  [
+                                         {
+                                             "text":  "我现在在四川大学读社会保障硕士，也在探索 AI 产品。",
+                                             "wav":  "chapters-about-1.wav"
+                                         },
+                                         {
+                                             "text":  "这里还有我的运动和生活记录。",
+                                             "wav":  "chapters-about-2.wav"
+                                         },
+                                         {
+                                             "text":  "一起认识一下我吧。",
+                                             "wav":  "chapters-about-3.wav"
+                                         }
+                                     ],
+                  "chapters-experience":  [
+                                              {
+                                                  "text":  "我做过迎宾机器人的对话调试，也负责过周报智能体的产品方案。",
+                                                  "wav":  "chapters-experience-1.wav"
+                                              },
+                                              {
+                                                  "text":  "你想先听哪一段？",
+                                                  "wav":  "chapters-experience-2.wav"
+                                              }
+                                          ],
+                  "chapters-works":  [
+                                         {
+                                             "text":  "这里有周报智能体和 AI 学习助手。",
+                                             "wav":  "chapters-works-1.wav"
+                                         },
+                                         {
+                                             "text":  "你可以点开项目看详情，也可以让我先讲讲，它想解决什么问题。",
+                                             "wav":  "chapters-works-2.wav"
+                                         }
+                                     ],
+                  "chapters-contact":  [
+                                           {
+                                               "text":  "谢谢你来做客。",
+                                               "wav":  "chapters-contact-1.wav"
+                                           },
+                                           {
+                                               "text":  "如果你也关注 AI 产品，或者想聊聊合作和机会，欢迎给我写邮件。",
+                                               "wav":  "chapters-contact-2.wav"
+                                           },
+                                           {
+                                               "text":  "很高兴认识你。",
+                                               "wav":  "chapters-contact-3.wav"
+                                           }
+                                       ],
+                  "topics-study":  [
+                                       {
+                                           "text":  "我本科在西南政法大学学习行政管理，现在在四川大学读社会保障硕士。",
+                                           "wav":  "topics-study-1.wav"
+                                       }
+                                   ],
+                  "topics-focus":  [
+                                       {
+                                           "text":  "我主要关注 AI 智能体、大模型应用和具身智能。",
+                                           "wav":  "topics-focus-1.wav"
+                                       },
+                                       {
+                                           "text":  "我更在意这些能力能帮人解决什么实际问题。",
+                                           "wav":  "topics-focus-2.wav"
+                                       }
+                                   ],
+                  "topics-life":  [
+                                      {
+                                          "text":  "这里放着我的健身日常、日落和七里香花下的照片。",
+                                          "wav":  "topics-life-1.wav"
+                                      },
+                                      {
+                                          "text":  "做产品之外，也认真生活。",
+                                          "wav":  "topics-life-2.wav"
+                                      }
+                                  ],
+                  "topics-robot":  [
+                                       {
+                                           "text":  "在津安达，我调试过机器人的提示词和角色设定，也做了一百多轮实景验证。",
+                                           "wav":  "topics-robot-1.wav"
+                                       },
+                                       {
+                                           "text":  "模型的表现，最终要放到真实场景里检验。",
+                                           "wav":  "topics-robot-2.wav"
+                                       }
+                                   ],
+                  "topics-weekly":  [
+                                        {
+                                            "text":  "手工写周报很耗时，业务指标也比较分散。",
+                                            "wav":  "topics-weekly-1.wav"
+                                        },
+                                        {
+                                            "text":  "我负责梳理周报智能体的能力边界和输出规范，并做出了可交互原型。",
+                                            "wav":  "topics-weekly-2.wav"
+                                        }
+                                    ],
+                  "topics-learning":  [
+                                          {
+                                              "text":  "这个学习助手，是我借助 AI 独立动手做的探索。",
+                                              "wav":  "topics-learning-1.wav"
+                                          },
+                                          {
+                                              "text":  "项目还在持续完善，我会把从想法到实现的过程记录在这里。",
+                                              "wav":  "topics-learning-2.wav"
+                                          }
+                                      ],
+                  "topics-fitness":  [
+                                         {
+                                             "text":  "这是我的健身日常。",
+                                             "wav":  "topics-fitness-1.wav"
+                                         },
+                                         {
+                                             "text":  "保持力量，也保持专注。",
+                                             "wav":  "topics-fitness-2.wav"
+                                         }
+                                     ],
+                  "topics-sunset":  [
+                                        {
+                                            "text":  "这是我记录的日落时刻。",
+                                            "wav":  "topics-sunset-1.wav"
+                                        },
+                                        {
+                                            "text":  "在日落里，把视野放远一点。",
+                                            "wav":  "topics-sunset-2.wav"
+                                        }
+                                    ],
+                  "topics-flowers":  [
+                                         {
+                                             "text":  "这是七里香花下的生活片段。",
+                                             "wav":  "topics-flowers-1.wav"
+                                         },
+                                         {
+                                             "text":  "记住夏天的明亮。",
+                                             "wav":  "topics-flowers-2.wav"
+                                         }
+                                     ],
+                  "topics-contact":  [
+                                         {
+                                             "text":  "页面上就是我的邮箱。",
+                                             "wav":  "topics-contact-1.wav"
+                                         },
+                                         {
+                                             "text":  "你可以点击写邮件，也可以复制地址，方便以后联系。",
+                                             "wav":  "topics-contact-2.wav"
+                                         }
+                                     ]
+              }
+}

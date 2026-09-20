@@ -1,0 +1,14 @@
+/* Guided narration shares the host's existing inline controls. No overlay or counter. */
+.auto-guide-focus { position:relative }
+.auto-guide-focus::after,.host-focus::after { content:'';position:absolute;left:-13px;top:12px;width:5px;height:5px;border-radius:50%;background:var(--teal);pointer-events:none;animation:guide-cue 1.8s ease-out both }
+@keyframes guide-cue { 0% { opacity:0;transform:translateY(8px) } 25%,65% { opacity:1;transform:translateY(0);box-shadow:0 0 10px #a5dfda66 } 100% { opacity:.35;transform:translateY(0) } }
+@media(prefers-reduced-motion:reduce){.auto-guide-focus::after,.host-focus::after{animation:none}}
+.presenter-tools [data-guide-control=resume] { color:var(--teal) }
+.presenter-tools [hidden] { display:none!important }
+body[data-auto-guide=playing] .presenter-reading { display:none!important }
+.guided-preview[open] { position:fixed;inset:28px auto auto 5vw;margin:0;width:min(800px,calc(100vw - 350px));max-height:calc(100dvh - 100px);overflow-y:auto;z-index:40;box-shadow:0 30px 120px #000a;border-color:#b698ed80 }
+body[data-auto-guide] .host-actor { z-index:50 }
+body[data-auto-guide=playing] .host-floor-hint { display:none }
+@media(max-width:760px){
+ .guided-preview[open] { top:16px;left:16px;width:calc(100% - 32px);max-height:min(55dvh,calc(100dvh - 220px));padding:26px 20px }
+}

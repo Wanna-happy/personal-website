@@ -1,0 +1,19 @@
+:host([guide]) { --character-height:min(270px,34vh) }
+:host([contact]) .character,:host([contact]) .shadow,:host([contact]) [data-action="roam"] { display:none }
+:host([contact]) .pet { width:100px }
+:host([guide]) .guide-panel { position:absolute; width:min(305px,calc(100vw - 24px)); padding:20px; pointer-events:auto; border:1px solid #51425f; border-radius:22px 22px 6px 22px; background:#1b1926f5; color:#f0eef5; box-shadow:0 14px 50px #0004; backdrop-filter:blur(16px); font-family:'Microsoft YaHei',sans-serif; max-height:calc(100dvh - 24px); overflow-y:auto }
+.guide-header { display:flex; justify-content:space-between; align-items:center; gap:10px }
+.guide-owner { font-size:10px; color:#b6adca }
+.guide-owner i { display:inline-block; width:5px; height:5px; background:#a9dedd; border-radius:50%; margin-right:4px }
+.guide-panel button { font-family:inherit; cursor:pointer }
+.guide-collapse { width:28px; height:28px; border:1px solid #ffffff18; border-radius:50%; background:#302939; color:#ddd1f0; font-size:19px }
+.guide-stop { color:#b698ed; font:10px Consolas,monospace; margin:16px 0 10px }
+.guide-copy h2 { font-size:19px; font-weight:600; line-height:1.5; margin:0 0 11px }
+.guide-text { margin:0; font-size:12px; line-height:1.95; color:#bcb6ca }
+.guide-action { display:block; margin-top:16px; padding:12px 0; color:#a9dedd; text-decoration:none; font-size:12px; border-top:1px solid #ffffff18 }
+.guide-stops { display:flex; gap:4px; justify-content:space-between }
+.guide-stops button { flex:1; min-height:36px; padding:5px 4px; border-radius:8px; background:transparent; border:1px solid #ffffff12; color:#c2b5d4; font-size:10px; white-space:nowrap }
+.guide-stops button[aria-current] { background:#b698ed; border-color:#b698ed; color:#17101f }
+.guide-panel button:focus-visible,.guide-action:focus-visible { outline:2px solid #a9dedd; outline-offset:3px }
+@media(max-width:1199px) { :host([guide]) { --character-height:165px } :host([guide]) .guide-panel { width:min(320px,calc(100vw - 145px)); padding:15px } .guide-copy h2 { font-size:16px } .guide-text { font-size:11px; line-height:1.8 } .guide-owner { font-size:9px } .guide-stops { gap:2px } .guide-stops button { padding:4px 2px; font-size:9px } .guide-action { font-size:11px; margin-top:11px } }
+@media(max-width:420px) { :host([guide]) { --character-height:135px } :host([guide]) .guide-panel { width:calc(100vw - 115px); padding:13px } .guide-header { gap:3px } .guide-collapse { width:25px;height:25px;flex-shrink:0 } .guide-owner { font-size:8px } .guide-stop { margin-top:10px } }

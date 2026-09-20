@@ -1,0 +1,197 @@
+{
+  "voice": "Microsoft Kangkang",
+  "language": "zh-CN",
+  "engine": "Windows Speech Synthesis",
+  "items": {
+    "chapters-home": [
+      {
+        "text": "嗨，我是阮涵，欢迎来做客。",
+        "src": "mascot/audio/chapters-home-1.mp3",
+        "duration": 3.726
+      },
+      {
+        "text": "这里有我的经历、作品，还有一些生活片段。",
+        "src": "mascot/audio/chapters-home-2.mp3",
+        "duration": 4.992
+      },
+      {
+        "text": "想先从哪里逛起？",
+        "src": "mascot/audio/chapters-home-3.mp3",
+        "duration": 2.763
+      }
+    ],
+    "chapters-about": [
+      {
+        "text": "我现在在四川大学读社会保障硕士，也在探索 AI 产品。",
+        "src": "mascot/audio/chapters-about-1.mp3",
+        "duration": 6.438
+      },
+      {
+        "text": "这里还有我的运动和生活记录。",
+        "src": "mascot/audio/chapters-about-2.mp3",
+        "duration": 3.637
+      },
+      {
+        "text": "一起认识一下我吧。",
+        "src": "mascot/audio/chapters-about-3.mp3",
+        "duration": 2.613
+      }
+    ],
+    "chapters-experience": [
+      {
+        "text": "我做过迎宾机器人的对话调试，也负责过周报智能体的产品方案。",
+        "src": "mascot/audio/chapters-experience-1.mp3",
+        "duration": 6.742
+      },
+      {
+        "text": "你想先听哪一段？",
+        "src": "mascot/audio/chapters-experience-2.mp3",
+        "duration": 2.6
+      }
+    ],
+    "chapters-works": [
+      {
+        "text": "这里有周报智能体和 AI 学习助手。",
+        "src": "mascot/audio/chapters-works-1.mp3",
+        "duration": 4.03
+      },
+      {
+        "text": "你可以点开项目看详情，也可以让我先讲讲，它想解决什么问题。",
+        "src": "mascot/audio/chapters-works-2.mp3",
+        "duration": 7.355
+      }
+    ],
+    "chapters-contact": [
+      {
+        "text": "谢谢你来做客。",
+        "src": "mascot/audio/chapters-contact-1.mp3",
+        "duration": 2.266
+      },
+      {
+        "text": "如果你也关注 AI 产品，或者想聊聊合作和机会，欢迎给我写邮件。",
+        "src": "mascot/audio/chapters-contact-2.mp3",
+        "duration": 7.391
+      },
+      {
+        "text": "很高兴认识你。",
+        "src": "mascot/audio/chapters-contact-3.mp3",
+        "duration": 2.426
+      }
+    ],
+    "topics-study": [
+      {
+        "text": "我本科在西南政法大学学习行政管理，现在在四川大学读社会保障硕士。",
+        "src": "mascot/audio/topics-study-1.mp3",
+        "duration": 8.2
+      }
+    ],
+    "topics-focus": [
+      {
+        "text": "我主要关注 AI 智能体、大模型应用和具身智能。",
+        "src": "mascot/audio/topics-focus-1.mp3",
+        "duration": 5.286
+      },
+      {
+        "text": "我更在意这些能力能帮人解决什么实际问题。",
+        "src": "mascot/audio/topics-focus-2.mp3",
+        "duration": 5.113
+      }
+    ],
+    "topics-life": [
+      {
+        "text": "这里放着我的健身日常、日落和七里香花下的照片。",
+        "src": "mascot/audio/topics-life-1.mp3",
+        "duration": 5.621
+      },
+      {
+        "text": "做产品之外，也认真生活。",
+        "src": "mascot/audio/topics-life-2.mp3",
+        "duration": 3.408
+      }
+    ],
+    "topics-robot": [
+      {
+        "text": "在津安达，我调试过机器人的提示词和角色设定，也做了一百多轮实景验证。",
+        "src": "mascot/audio/topics-robot-1.mp3",
+        "duration": 8.034
+      },
+      {
+        "text": "模型的表现，最终要放到真实场景里检验。",
+        "src": "mascot/audio/topics-robot-2.mp3",
+        "duration": 4.742
+      }
+    ],
+    "topics-weekly": [
+      {
+        "text": "手工写周报很耗时，业务指标也比较分散。",
+        "src": "mascot/audio/topics-weekly-1.mp3",
+        "duration": 4.871
+      },
+      {
+        "text": "我负责梳理周报智能体的能力边界和输出规范，并做出了可交互原型。",
+        "src": "mascot/audio/topics-weekly-2.mp3",
+        "duration": 7.305
+      }
+    ],
+    "topics-learning": [
+      {
+        "text": "这个学习助手，是我借助 AI 独立动手做的探索。",
+        "src": "mascot/audio/topics-learning-1.mp3",
+        "duration": 5.207
+      },
+      {
+        "text": "项目还在持续完善，我会把从想法到实现的过程记录在这里。",
+        "src": "mascot/audio/topics-learning-2.mp3",
+        "duration": 6.966
+      }
+    ],
+    "topics-fitness": [
+      {
+        "text": "这是我的健身日常。",
+        "src": "mascot/audio/topics-fitness-1.mp3",
+        "duration": 2.658
+      },
+      {
+        "text": "保持力量，也保持专注。",
+        "src": "mascot/audio/topics-fitness-2.mp3",
+        "duration": 3.058
+      }
+    ],
+    "topics-sunset": [
+      {
+        "text": "这是我记录的日落时刻。",
+        "src": "mascot/audio/topics-sunset-1.mp3",
+        "duration": 2.926
+      },
+      {
+        "text": "在日落里，把视野放远一点。",
+        "src": "mascot/audio/topics-sunset-2.mp3",
+        "duration": 3.526
+      }
+    ],
+    "topics-flowers": [
+      {
+        "text": "这是七里香花下的生活片段。",
+        "src": "mascot/audio/topics-flowers-1.mp3",
+        "duration": 3.65
+      },
+      {
+        "text": "记住夏天的明亮。",
+        "src": "mascot/audio/topics-flowers-2.mp3",
+        "duration": 2.466
+      }
+    ],
+    "topics-contact": [
+      {
+        "text": "页面上就是我的邮箱。",
+        "src": "mascot/audio/topics-contact-1.mp3",
+        "duration": 2.85
+      },
+      {
+        "text": "你可以点击写邮件，也可以复制地址，方便以后联系。",
+        "src": "mascot/audio/topics-contact-2.mp3",
+        "duration": 5.913
+      }
+    ]
+  }
+}

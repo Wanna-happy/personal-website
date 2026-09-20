@@ -1,0 +1,32 @@
+{
+  "nod": {
+    "source": "b547d3db-0d70-4200-81bd-7ad76b86840a.mp4",
+    "start": 0.25,
+    "duration": 1.55,
+    "processing": "one-shot contextual gesture from user footage; no speech replacement"
+  },
+  "look": {
+    "source": "772376c7-3698-402b-881c-7ab1169240d3.mp4",
+    "start": 2.8,
+    "duration": 1.35,
+    "processing": "one-shot contextual gesture from user footage; no speech replacement"
+  },
+  "invite": {
+    "source": "772376c7-3698-402b-881c-7ab1169240d3.mp4",
+    "start": 4.1,
+    "duration": 2.1,
+    "processing": "one-shot contextual gesture from user footage; no speech replacement"
+  },
+  "show": {
+    "source": "772376c7-3698-402b-881c-7ab1169240d3.mp4",
+    "start": 6.0,
+    "duration": 1.6,
+    "processing": "one-shot contextual gesture from user footage; no speech replacement"
+  },
+  "goodbye": {
+    "source": "b547d3db-0d70-4200-81bd-7ad76b86840a.mp4",
+    "start": 8.2,
+    "duration": 2.6,
+    "processing": "one-shot contextual gesture from user footage; no speech replacement"
+  }
+}

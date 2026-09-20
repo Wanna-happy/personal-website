@@ -1,0 +1,144 @@
+/* Content and presenter occupy separate grid cells. Nothing floats over reading. */
+.guided-tour main>[data-page]:not(.welcome) { display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:clamp(35px,5vw,90px); width:min(1480px,90%); max-width:none; margin:0 auto; padding:55px 0 40px; min-height:85svh; align-items:start }
+.host-slot { min-width:0; align-self:start; position:sticky; top:25px; overflow:hidden }
+.chapter-body { min-width:0 }
+.guided-tour .experience>.section-heading { position:static }
+.experience .chapter-body { display:grid; grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr); gap:40px }
+.experience .chapter-body>.section-heading { position:sticky;top:55px;align-self:start }
+.experience .chapter-body .chapter-footer { grid-column:1/-1 }
+.experience .section-heading h2 { font-size:clamp(34px,3.4vw,56px) }
+.presenter { width:100%; color:var(--ink) }
+.presenter-stage { position:relative; height:340px; width:100%; display:flex; flex-direction:column; align-items:center; transform-origin:center bottom }
+.presenter-person { border:0;background:transparent;padding:0;width:100%;height:310px;display:block;cursor:pointer }
+.presenter-person canvas { display:block;width:100%;height:100% }
+.presenter-name { display:block;text-align:center;font:9px var(--mono);letter-spacing:.15em;margin-top:12px;color:#ccc4d8 }
+.presenter-name span { margin-left:10px;color:var(--muted);font:9px var(--sans);letter-spacing:0 }
+.presenter-dialog { padding:22px 0 0;border-top:1px solid #a78bc94d;margin-top:16px;min-height:220px }
+.presenter-meta { display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px }
+.presenter-topic { color:var(--teal) }
+.presenter-progress { font:9px var(--mono);color:var(--muted);white-space:nowrap }
+.presenter-line { font-size:14px;line-height:1.9;color:#d2cbdc;min-height:80px;margin:16px 0 }
+.presenter-reading,.presenter-choices { display:flex;flex-wrap:wrap;gap:8px }
+.presenter-reading button,.presenter-choices button { min-height:36px;border:1px solid #ffffff20;border-radius:20px;padding:8px 14px;font-size:11px;background:#211c2d;color:#ddd2ed }
+.presenter-reading button:first-child { background:#b698ed;color:#1b1225;border-color:#b698ed }
+.presenter-reading button:hover,.presenter-choices button:hover { border-color:#b698ed }
+.presenter-choices .presenter-replay { background:transparent;color:var(--muted) }
+.presenter-destinations { margin-top:20px;font-size:11px;color:var(--muted) }
+.presenter-destinations summary { cursor:pointer;padding:8px 0 }
+.presenter-destinations nav { display:flex;flex-wrap:wrap;gap:8px;margin-top:10px }
+.presenter-destinations a { border-bottom:1px solid #665778;color:var(--teal);padding:6px 0;margin-right:12px }
+.presenter-dialog { position:relative }
+.presenter:is([data-phase=departing],[data-phase=arriving],[data-phase=layout]) .presenter-dialog > :not(.presenter-destinations):not(.presenter-journey) { visibility:hidden }
+.presenter-journey { position:absolute;top:22px;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--teal) }
+.presenter-journey button { flex-shrink:0;border:1px solid #a78bc966;border-radius:18px;background:#211c2d;padding:9px 12px;color:var(--ink);font-size:11px;min-height:40px }
+.host-focus { position:relative }
+.guided-tour .welcome { width:min(1320px,90%);grid-template-columns:1.1fr 1fr;gap:7%;padding-top:65px;padding-bottom:110px;align-items:center }
+.welcome .host-slot { position:relative;top:auto }
+.welcome .presenter-stage { height:490px }
+.welcome .presenter-person { height:455px }
+.welcome .presenter-dialog { width:min(100%,370px);margin:25px auto 0 }
+.guided-tour .site-footer { width:min(1480px,90%);margin:0 auto;padding-bottom:35px }
+.guided-tour .contact-card { padding-top:45px;padding-bottom:75px }
+.guided-tour .contact-card__footer { margin-top:70px }
+@media(min-width:1600px){ .presenter-stage { height:420px } .presenter-person { height:390px } }
+@media(max-width:1100px){
+ .guided-tour main>[data-page]:not(.welcome) { grid-template-columns:minmax(0,1fr) 270px;gap:30px }
+ .experience .chapter-body { display:block }
+ .experience .chapter-body>.section-heading { position:static }
+ .presenter-line { font-size:13px }
+ .presenter-stage { height:300px }.presenter-person { height:270px }
+ .work-grid { grid-template-columns:1fr }
+}
+@media(max-width:760px){
+ .guided-tour main>[data-page]:not(.welcome) { display:flex;flex-direction:column;gap:32px;width:calc(100% - 40px);padding-top:24px;padding-bottom:35px }
+ .host-slot { position:static;top:auto;width:100% }
+ [data-page]:not(.welcome)>.host-slot { order:-1;border-bottom:1px solid var(--line);padding-bottom:25px }
+ .presenter { display:grid;grid-template-columns:95px minmax(0,1fr);gap:18px;align-items:start }
+ .presenter-stage { height:180px;margin-top:8px }
+ .presenter-person { height:155px }
+ .presenter-name { font-size:7px;letter-spacing:.06em;white-space:nowrap }
+ .presenter-name span { display:none }
+ .presenter-dialog { border:0;margin-top:0;padding:0;min-height:245px }
+ .presenter-meta { font-size:10px;gap:5px }
+ .presenter-progress { font-size:8px }
+ .presenter-line { font-size:12px;min-height:84px;line-height:1.9;margin:12px 0 }
+ .presenter-reading button,.presenter-choices button { font-size:10px;padding:7px 10px;min-height:34px }
+ .presenter-reading,.presenter-choices { gap:6px }
+ .presenter-destinations { margin-top:10px;font-size:10px }
+ .guided-tour .welcome { display:flex;flex-direction:column;align-items:stretch;width:calc(100% - 40px);gap:25px;padding:35px 0 75px }
+ .welcome .presenter { grid-template-columns:125px minmax(0,1fr);gap:15px }
+ .welcome .presenter-stage { height:245px }
+ .welcome .presenter-person { height:220px }
+ .welcome .presenter-dialog { margin:0;min-height:220px }
+ .welcome .presenter-meta { display:block }
+ .welcome .presenter-progress { display:block;margin-top:6px }
+ .guided-tour .welcome h1 { font-size:50px }
+ .guided-tour .welcome-eyebrow { font-size:8px }
+ .guided-tour .site-footer { padding-bottom:30px }
+ .guided-tour .contact-card { padding-bottom:30px }
+ .experience .section-heading h2 { font-size:40px }
+}
+@media(prefers-reduced-motion:reduce) { .presenter-stage { transform:none!important } }
+.presenter [hidden] { display:none!important }
+.presenter-tools { display:flex;flex-wrap:wrap;gap:12px;margin-top:14px }
+.presenter-tools button,.welcome-free { background:none;border:0;padding:8px 0;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:5px }
+.presenter-tools [data-tour-action=sound] { color:var(--teal) }
+.presenter-tools [data-tour-action=sound][aria-pressed=true] { color:#d5baff }
+.presenter-voice-status { display:block;min-height:16px;margin-top:6px;color:var(--muted);font-size:10px }
+.presenter[data-speaking=true] .presenter-voice-status { color:var(--teal) }
+.presenter-motion { display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);margin-top:14px;cursor:pointer }
+.presenter-motion input { accent-color:#b698ed }
+.presenter[data-reading=true] { visibility:hidden }
+.presenter[data-mode=free] .presenter-dialog { min-height:0 }
+.presenter[data-mode=free] .presenter-line { min-height:0 }
+.welcome-actions { flex-wrap:wrap }
+.context-talk { display:inline-flex;align-items:center;min-height:40px;background:transparent;border:1px solid #a78bc966;color:#ddd2ed;border-radius:20px;padding:8px 16px;font:inherit;font-size:12px;cursor:pointer;margin-top:16px }
+.work-card>.context-talk { margin:0 24px 22px }
+.context-talk:hover,.context-talk.is-selected,.project-story-controls [aria-pressed=true] { border-color:#b698ed;background:#30253f;color:#f3eaff }
+.life-photo button { display:block;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer }
+.life-photo button img { width:100%;height:100%;object-fit:cover }
+.life-photo button[aria-pressed=true] { outline:3px solid #b698ed;outline-offset:-3px }
+.life-caption { color:var(--muted);font-size:14px;line-height:1.8;min-height:2em;margin-top:20px }
+.project-story-controls { display:flex;flex-wrap:wrap;gap:8px;margin-top:28px }
+.project-story-controls button { border:1px solid #a78bc966;border-radius:18px;padding:9px 14px;background:transparent;color:inherit;cursor:pointer;font:inherit;font-size:12px }
+#project-story,#project-explanation { line-height:1.9;color:#d2cbdc }
+#project-explanation { border-left:2px solid #b698ed;padding-left:18px }
+.contact-copy { display:flex;gap:14px;align-items:baseline;flex-wrap:wrap }
+#copy-status { color:var(--teal);font-size:12px }
+button:focus-visible,summary:focus-visible,a:focus-visible { outline:2px solid #b698ed;outline-offset:4px }
+.reduce-motion * { scroll-behavior:auto!important;animation:none!important;transition:none!important }
+.reduce-motion .cursor { display:none }
+@media(max-width:760px){.presenter-tools{gap:8px}.presenter-tools button{font-size:10px}.presenter-motion{font-size:10px}.life-photo button{position:absolute;inset:0}.presenter-reading button,.presenter-choices button{min-height:40px}}
+
+/* One persistent actor moves across the viewport; occupied areas stay clickable. */
+body.guided-tour { --host-floor-height:0px;height:100dvh;overflow:hidden }
+.site-viewport { height:100dvh;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-color:#9c7ccd #16131e }
+.host-floor { position:fixed;inset:0;pointer-events:none;z-index:20 }
+.host-floor-hint { position:absolute;left:5%;bottom:15px;font-size:11px;color:#a49bab;pointer-events:none }
+.host-step-target { position:fixed;width:28px;height:9px;border:1px solid #b698ed;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none }
+.host-actor.presenter-stage { position:fixed;width:250px;height:250px;transform:translate(-50%,-100%);margin:0;z-index:25;pointer-events:none;will-change:left,top;transition:opacity .15s linear }
+.host-actor[data-moving=true] .presenter-person { pointer-events:none }
+.host-actor[data-over-content=true] { opacity:.3 }
+.host-actor[data-over-content=true] .presenter-person { pointer-events:none }
+.host-actor .presenter-person { width:110px;height:100%;margin-inline:auto;position:relative;pointer-events:auto;touch-action:manipulation }
+.host-actor canvas { position:absolute;top:0;left:50%;transform:translateX(-50%);width:250px;height:250px;pointer-events:none }
+.host-actor.presenter-stage { transform:translate(-50%,-100%)!important }
+.host-actor .presenter-name { display:none }
+.presenter { display:block }
+.presenter-dialog,.welcome .presenter-dialog { margin:0;padding-top:18px;min-height:0 }
+.guided-tour .welcome { padding-top:45px;padding-bottom:55px;min-height:calc(100dvh - var(--host-floor-height)) }
+.presenter-tools button:disabled { color:#8d8497;cursor:default;text-decoration:none }
+.presenter[data-phase=relocating] .presenter-reading { visibility:hidden }
+@media(max-width:760px){
+ body.guided-tour { --host-floor-height:0px }
+ .host-actor.presenter-stage { width:150px;height:150px }
+ .host-actor .presenter-person { width:70px }
+ .host-actor canvas { width:150px;height:150px }
+ .presenter,.welcome .presenter { display:block }
+ .presenter-dialog,.welcome .presenter-dialog { width:100%;min-height:0;padding-top:0 }
+ .presenter-meta,.welcome .presenter-meta { display:flex }
+ .presenter-line { min-height:0 }
+ .presenter-voice-status:empty { display:none }
+ .host-floor-hint { left:20px;bottom:9px;font-size:10px }
+ .guided-tour .welcome { gap:32px;padding-top:30px }
+}

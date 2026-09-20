@@ -1,0 +1,30 @@
+{
+  "welcome-original": {
+    "source": "b547d3db-0d70-4200-81bd-7ad76b86840a.mp4",
+    "start": 0,
+    "end": 15,
+    "originalAudio": true,
+    "fps": 24.0
+  },
+  "explain-original": {
+    "source": "772376c7-3698-402b-881c-7ab1169240d3.mp4",
+    "start": 0,
+    "end": 15,
+    "originalAudio": true,
+    "fps": 24.0
+  },
+  "walk-cycle": {
+    "source": "40f8647a-e6e0-418d-9803-5788ee4a140e.mp4",
+    "start": 2.7,
+    "end": 3.6,
+    "originalAudio": false,
+    "fps": 24.0
+  },
+  "run-cycle": {
+    "source": "964f45bd-4d65-4d3b-9b2d-d0b6bdecc0ea.mp4",
+    "start": 1.9,
+    "end": 2.65,
+    "originalAudio": false,
+    "fps": 24.0
+  }
+}

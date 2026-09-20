@@ -1,0 +1,22 @@
+{
+  "walk": {
+    "source": "40f8647a-e6e0-418d-9803-5788ee4a140e.mp4",
+    "start": 4.258333333333334,
+    "end": 4.925,
+    "strideSeconds": 0.6666666666666666,
+    "seamError": 0.0076142313453330486,
+    "motionVariation": 0.045823611319065094,
+    "fps": 60,
+    "repetitions": 24
+  },
+  "run": {
+    "source": "964f45bd-4d65-4d3b-9b2d-d0b6bdecc0ea.mp4",
+    "start": 3.908333333333333,
+    "end": 4.575,
+    "strideSeconds": 0.6666666666666666,
+    "seamError": 0.06689402977780118,
+    "motionVariation": 0.07207746058702469,
+    "fps": 60,
+    "repetitions": 24
+  }
+}

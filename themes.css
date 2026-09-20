@@ -1,0 +1,39 @@
+/* Warm palette recovered from upstream/personal-website-main/styles.css. */
+.site-utilities{position:fixed;z-index:70;top:16px;right:28px;display:flex;align-items:center;gap:8px}
+.theme-toggle,.admin-entry{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 15px;border:1px solid var(--line);border-radius:30px;background:var(--surface);color:var(--muted);font:11px var(--sans);box-shadow:0 3px 15px #0000000a;white-space:nowrap}
+.theme-toggle:hover,.admin-entry:hover{color:var(--ink);border-color:var(--accent)}
+:root[data-theme=light]{color-scheme:light;--paper:#f6f1e8;--surface:#fffaf2;--ink:#211d19;--muted:#71675e;--accent:#c25e3a;--teal:#9e4426;--line:#211d191f}
+[data-theme=light] body{background:var(--paper)}
+[data-theme=light] ::selection{background:#c25e3a;color:white}
+[data-theme=light] .site-viewport{scrollbar-color:#b68e74 #efe7d9}
+[data-theme=light] .cursor__ring{border-color:#211d1955}
+[data-theme=light] .welcome-primary,[data-theme=light] .button--dark{background:#211d19;border-color:#211d19;color:#fffaf2}
+[data-theme=light] .welcome-primary:hover{background:#9e4426;border-color:#9e4426}
+[data-theme=light] .presenter-dialog{background:#fffaf2f7;border-color:#211d1929;box-shadow:0 10px 36px #4a3a2814}
+[data-theme=light] .presenter-line,[data-theme=light] #project-story,[data-theme=light] #project-explanation{color:#4a443d}
+[data-theme=light] .presenter-reading button,[data-theme=light] .presenter-choices button,[data-theme=light] .presenter-journey button{background:#efe7d9;border-color:#211d1929;color:#4a443d}
+[data-theme=light] .presenter-reading button:first-child{background:#211d19;color:#fffaf2;border-color:#211d19}
+[data-theme=light] .presenter-tools [data-tour-action=sound][aria-pressed=true]{color:#9e4426}
+[data-theme=light] .presenter-destinations a{border-color:#c25e3a55}
+[data-theme=light] .host-greeting{color:#9e4426;text-shadow:0 2px 8px #f6f1e8}
+[data-theme=light] .host-step-target{border-color:#9e4426}
+[data-theme=light] .story-card{border-color:#c6ac97}
+[data-theme=light] .work-card{background:#fffaf2}
+[data-theme=light] .work-card__cover{background:#e8dfcf;color:#45392e}
+[data-theme=light] .cover-learning{background:#f0ddd0;color:#783c29}
+[data-theme=light] .context-talk,[data-theme=light] .project-story-controls button{color:#783c29;border-color:#c25e3a66}
+[data-theme=light] .context-talk:hover,[data-theme=light] .context-talk.is-selected,[data-theme=light] .project-story-controls [aria-pressed=true]{background:#f0ddd0;border-color:#9e4426;color:#783c29}
+[data-theme=light] .contact-card{background:radial-gradient(ellipse at bottom,#e0b25a33,transparent 65%)}
+[data-theme=light] .contact-card__mail{border-color:#b28b70}
+[data-theme=light] .contact-card__mail:hover{background:#c25e3a12}
+[data-theme=light] .project-dialog,[data-theme=light] .photo-viewer{background:#fffaf2;color:var(--ink);border-color:#211d1929;box-shadow:0 24px 70px #4a3a2829}
+[data-theme=light] .project-dialog::backdrop,[data-theme=light] .photo-viewer::backdrop{background:#2a211ac4}
+[data-theme=light] .photo-viewer figcaption,[data-theme=light] .photo-viewer-controls,[data-theme=light] .photo-upload-form p{color:#71675e}
+[data-theme=light] .photo-viewer-controls button{color:#9e4426}
+[data-theme=light] .photo-close{background:#efe7d9;color:#211d19}
+[data-theme=light] .photo-upload-form input{background:#f6f1e8;border-color:#bbaa96;color:#211d19}
+[data-theme=light] .photo-upload-form button{background:#211d19;color:#fffaf2}
+[data-theme=light] .life-gallery figure{background:#fffaf2;box-shadow:0 12px 24px #4a3a281c}
+[data-theme=light] .album-actions button{color:#9e4426;border-color:#c25e3a55}
+[data-theme=light] :is(button,summary,a,textarea):focus-visible{outline-color:#9e4426}
+@media(max-width:760px){.site-utilities{top:10px;right:16px;gap:6px}.theme-toggle,.admin-entry{min-height:36px;font-size:10px;padding:7px 12px}}
