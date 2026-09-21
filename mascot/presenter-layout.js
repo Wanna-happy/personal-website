@@ -13,7 +13,10 @@
  box.addEventListener('pointerenter',()=>{panelHover=true;clearTimeout(closeTimer);});
  box.addEventListener('pointerleave',()=>{panelHover=false;laterClose();});
  person.addEventListener('focus',()=>{if(person.matches(':focus-visible'))open();});
- person.addEventListener('click',e=>{if(box.dataset.open!=='true'){e.preventDefault();e.stopImmediatePropagation();open();}},true);
+ person.addEventListener('click',e=>{
+  if(window.RUAN_VISITOR_LIKED){close();return;}
+  if(box.dataset.open!=='true'){e.preventDefault();e.stopImmediatePropagation();open();}
+ },true);
  box.addEventListener('focusout',laterClose);person.addEventListener('blur',laterClose);
  document.addEventListener('pointerdown',e=>{if(!box.contains(e.target)&&!person.contains(e.target))close();},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&box.dataset.open==='true'&&box.dataset.expanded!=='true'){person.focus({preventScroll:true});close();}});

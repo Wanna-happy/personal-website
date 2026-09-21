@@ -24,23 +24,11 @@
   };
   Object.values(celebrationAssets).forEach(src=>{const image=new Image();image.src=src;});
   let celebrationPoseLayer=0;
-  const fingerHeart=document.createElement('i'),overheadHeart=document.createElement('i');
-  fingerHeart.className='presenter-heart presenter-heart--finger';fingerHeart.textContent='♥';fingerHeart.setAttribute('aria-hidden','true');
-  overheadHeart.className='presenter-heart presenter-heart--overhead';overheadHeart.textContent='♡';overheadHeart.setAttribute('aria-hidden','true');
-  stage.append(fingerHeart,overheadHeart);
   const celebrationCaption=document.createElement('span');
-  celebrationCaption.className='presenter-celebration-caption';celebrationCaption.hidden=true;
-  celebrationCaption.setAttribute('role','status');celebrationCaption.setAttribute('aria-live','polite');stage.append(celebrationCaption);
-  const celebrationChoices=document.createElement('div');celebrationChoices.className='presenter-celebration-choices';celebrationChoices.hidden=true;
-  celebrationChoices.setAttribute('aria-label','已解锁的人物彩蛋');
-  for(const [kind,label] of [['two','双手比心'],['one','单手比心'],['overhead','头顶比心'],['thanks','送你一句祝福']]){
-    const button=document.createElement('button');button.type='button';button.textContent=label;button.dataset.celebration=kind;
-    button.addEventListener('click',()=>celebrate(kind));celebrationChoices.append(button);
-  }
-  $('.presenter-tools').after(celebrationChoices);
+  celebrationCaption.className='presenter-celebration-caption';celebrationCaption.hidden=true;stage.append(celebrationCaption);
   const state={phase:'waiting',chapter:'home',mode:read('ruan-mode')||'guided',line:0,readings:[],sequence:0,interactive:false,paused:false};
   let timer,deadline=0,remaining=0,hoverPaused=false,focusPaused=false,activeReading=false,detailOpen=false,focusTarget,focusTimer;
-  let speechKey='',lastGesture=0,walker,relocation=0,narrationEpoch=0,motionReady=Promise.resolve(),celebrationRun;
+  let speechKey='',lastGesture=0,walker,relocation=0,narrationEpoch=0,motionReady=Promise.resolve(),celebrationRun,celebrationClickIndex=0;
   const speech=new window.RuanPresenterSpeech({
     onEnd:options=>{if(activeReading)showLine(state.line+1,options);},
     onFallback:()=>schedule(),
@@ -135,6 +123,7 @@
     if(focus)$('.presenter-line').focus({preventScroll:!matchMedia('(max-width:760px)').matches});
   }
   $('.presenter-person').addEventListener('click',()=>{
+    if(window.RUAN_VISITOR_LIKED&&!detailOpen){const cycle=['two','one','overhead'];celebrate(cycle[celebrationClickIndex++%cycle.length]);return;}
     if(walker?.moving)return;
     if(!state.interactive||detailOpen)return;if(activeReading){showLine(state.line+1);return;}
     const words=state.chapter==='works'?['想了解哪个项目？点一下卡片，或者选“给我讲讲”。','你可以直接看详情，也可以让我先讲讲项目背景。']:['我在呢，想了解哪一部分？','慢慢看，也可以选“去哪里”，我陪你换一站。'];
@@ -173,8 +162,6 @@
   });
   document.addEventListener('projectopen',e=>{if(e.detail?.guided)return;++relocation;detailOpen=true;cancel();state.interactive=false;phase('reading');media.setPaused(true);element.dataset.reading='true';});
   document.addEventListener('hostfeedback',e=>{if(!state.interactive||detailOpen)return;finish();display(e.detail.text);media.play('acknowledge',{loop:false});highlight(e.detail.topic);});
-  function unlockCelebration(){celebrationChoices.hidden=!window.RUAN_VISITOR_LIKED;}
-  document.addEventListener('portfoliolikestate',unlockCelebration);unlockCelebration();
   async function celebrate(kind='all'){
     if(!window.RUAN_VISITOR_LIKED)return;
     window.ruanAutoGuide?.pause();window.portfolioCancelTransition?.();++relocation;walker?.stop();
@@ -194,26 +181,22 @@
       next.src=src;next.classList.add('is-active');current.classList.remove('is-active');
     };
     const setBeat=(beat,text)=>{
-      if(signal.aborted)return;stage.dataset.celebrationBeat=beat;setPose(beat);display(text);celebrationCaption.textContent=text;celebrationCaption.hidden=false;
-      const rect=stage.getBoundingClientRect(),width=Math.min(236,innerWidth-24);
-      celebrationCaption.style.width=width+'px';
-      celebrationCaption.style.left=Math.max(12,Math.min(innerWidth-width-12,rect.left+rect.width/2-width/2))-rect.left+'px';
-      celebrationCaption.style.top=(rect.top>100?-88:18)+'px';
+      if(signal.aborted)return;stage.dataset.celebrationBeat=beat;setPose(beat);celebrationCaption.hidden=true;
     };
-    const complete=()=>{if(signal.aborted)return;finish();display('这份喜欢我收到啦。点一下我，还可以再看彩蛋。');};
+    const complete=()=>{if(signal.aborted)return;finish();display('');};
     setBeat('ready','收到你的喜欢啦，送你一个小彩蛋。');
     stage.dataset.celebrationSource='full-body-keyframes';
     media.stop();media.setPaused(false);media.draw();
     if(media.reduced.matches){
-      setBeat('thanks','谢谢你来做客。愿你今天，也被喜欢的事物温柔回应。');
+      setBeat('thanks','');
       run.timer=setTimeout(complete,3200);return;
     }
-    const words={two:'先送你一个双手比心。',one:'再送你一颗单手小爱心。',overhead:'还有一个大大的头顶比心。',thanks:'谢谢你来做客，愿你每天都有小小的惊喜。'};
+    const words={two:'',one:'',overhead:'',thanks:''};
     const cues=kind==='all'?[
       {at:0,beat:'ready',text:'这份喜欢，我收到啦。'},
-      {at:.14,beat:'two',text:words.two},
-      {at:.39,beat:'one',text:words.one},
-      {at:.62,beat:'overhead',text:words.overhead},
+      {at:.02,beat:'two',text:words.two},
+      {at:.34,beat:'one',text:words.one},
+      {at:.60,beat:'overhead',text:words.overhead},
       {at:.88,beat:'thanks',text:words.thanks}
     ]:[{at:0,beat:kind,text:words[kind]||words.thanks}];
     const duration=kind==='all'?7200:2600;let startedAt=performance.now(),pauseStarted=0;
