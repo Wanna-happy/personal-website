@@ -23,6 +23,7 @@
  const greeting=document.createElement('div');greeting.className='host-greeting';greeting.hidden=true;greeting.textContent='嗨，我可以带你逛逛我的家。';document.body.append(greeting);
  let greetingTimer,greeted=false;try{greeted=localStorage.getItem('ruan-welcome-invitation-v1')==='seen';}catch{}
  function dismissGreeting(cancelPending=false){greeting.hidden=true;if(greeted||cancelPending)clearTimeout(greetingTimer);}
+ document.addEventListener('hostcelebrationstart',()=>{dismissGreeting(true);close();});
  function greet(){if(greeted||location.hash&&location.hash!=='#home')return;if(walker.moving||document.body.dataset.destination){greetingTimer=setTimeout(greet,500);return;}greeted=true;const p=walker.position;greeting.style.left=Math.max(12,Math.min(innerWidth-230,p.x+25))+'px';greeting.style.top=Math.max(12,p.y-walker.height()-38)+'px';greeting.hidden=false;try{localStorage.setItem('ruan-welcome-invitation-v1','seen');}catch{}greetingTimer=setTimeout(dismissGreeting,8000);}
  greetingTimer=setTimeout(greet,1200);
  box.dataset.expanded='false';

@@ -14,6 +14,13 @@ const request=(path,data,token)=>new Request('https://admin.test'+path,{method:d
 const state=()=>new AdminState({storage:new Storage()},env);
 const login=async s=>{const r=await s.fetch(request('/login',{password}));assert.equal(r.status,200);return (await r.json()).token;};
 test('missing configuration stays locked and origins are enforced',async()=>{const s=new AdminState({storage:new Storage()},{});assert.equal((await s.fetch(request('/login',{password}))).status,503);assert.equal((await worker.fetch(new Request('https://admin.test/status',{headers:{Origin:'https://evil.test'}}),env)).status,403);});
+test('public likes are permanent per visitor and share one total',async()=>{
+ const s=state(),one='visitor-111111111111',two='visitor-222222222222';
+ let response=await s.fetch(request('/likes',{visitorId:one}));assert.deepEqual(await response.json(),{count:1,liked:true,accepted:true});
+ response=await s.fetch(request('/likes',{visitorId:one}));assert.deepEqual(await response.json(),{count:1,liked:true,accepted:false});
+ response=await s.fetch(request('/likes',{visitorId:two}));assert.deepEqual(await response.json(),{count:2,liked:true,accepted:true});
+ response=await s.fetch(request('/likes?visitor='+one));assert.deepEqual(await response.json(),{count:2,liked:true});
+});
 test('login attempts persist across process restart, wrong passwords lock out',async()=>{const s=state();for(let i=0;i<5;i++)assert.equal((await s.fetch(request('/login',{password:'wrong'}))).status,401);const restarted=new AdminState({storage:s.store},env);assert.equal((await restarted.fetch(request('/login',{password}))).status,429);});
 test('save/upload require session; logout and password rotation revoke it',async()=>{const s=state();for(const p of ['/save','/upload'])assert.equal((await s.fetch(request(p,{}))).status,401);const token=await login(s);await s.fetch(request('/logout',{},token));assert.equal((await s.fetch(request('/session',undefined,token))).status,401);const token2=await login(s);const rotated=new AdminState({storage:s.store},{...env,ADMIN_PASSWORD_HASH:'changed'});assert.equal((await rotated.fetch(request('/session',undefined,token2))).status,401);});
 test('valid content passes; executable URLs, duplicate IDs and path traversal fail',()=>{validateContent(base);for(const mutate of [d=>d.projects[0].link='javascript:alert(1)',d=>d.photos[0].src='assets/../admin.js',d=>d.projects.push(d.projects[0]),d=>d.photos[0].thumbnail='data:text/html,test']){const data=structuredClone(base);mutate(data);assert.throws(()=>validateContent(data));}});

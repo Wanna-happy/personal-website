@@ -7,7 +7,7 @@
    this.floor=document.createElement('div');this.floor.className='host-floor';this.floor.innerHTML='<span class="host-floor-hint">点击页面空白处，我走过去。</span><span class="host-step-target" hidden aria-hidden="true"></span><span class="host-move-status sr-only" role="status"></span>';
    document.body.append(this.floor,stage);stage.classList.add('host-actor');this.marker=this.floor.querySelector('.host-step-target');this.place({x:innerWidth*.77,y:innerHeight*.76});
    window.addEventListener('resize',()=>{this.stop();this.place(this.nearestClear(this.clamp(this.position)));});
-   this.viewport.addEventListener('scroll',()=>{clearTimeout(this.scrollTimer);this.scrollTimer=setTimeout(()=>{if(!window.ruanAutoGuide?.active&&!this.moving&&!this.media.speechClock&&!document.body.dataset.destination){const p=this.nearestClear(this.position,this.obstacles(),{keepHeight:false});if(Math.hypot(p.x-this.position.x,p.y-this.position.y)>20)this.moveTo(p,{onDone:()=>this.media.play('idle')});}},180);},{passive:true});
+   this.viewport.addEventListener('scroll',()=>{clearTimeout(this.scrollTimer);this.scrollTimer=setTimeout(()=>{if(!this.stage.classList.contains('is-like-celebrating')&&!window.ruanAutoGuide?.active&&!this.moving&&!this.media.speechClock&&!document.body.dataset.destination){const p=this.nearestClear(this.position,this.obstacles(),{keepHeight:false});if(Math.hypot(p.x-this.position.x,p.y-this.position.y)>20)this.moveTo(p,{onDone:()=>this.media.play('idle')});}},180);},{passive:true});
    document.addEventListener('projectopen',e=>{this.stop();stage.inert=!e.detail?.guided;});document.addEventListener('projectclose',()=>{stage.inert=false;});
   }
   height(){return this.stage.offsetHeight;}

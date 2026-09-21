@@ -13,10 +13,34 @@
     '<details class="presenter-destinations"><summary>去哪里</summary><nav aria-label="由主人带路"></nav></details>'+
     '</div>';
   document.body.append(element);
-  const $=s=>element.querySelector(s),media=new window.RuanPresenterMedia($('canvas'));
+  const $=s=>element.querySelector(s),stage=$('.presenter-stage'),media=new window.RuanPresenterMedia($('canvas'));
+  const person=$('.presenter-person');
+  const celebrationPoses=[document.createElement('img'),document.createElement('img')];
+  celebrationPoses.forEach((image,index)=>{image.className='presenter-celebration-pose';image.alt='';image.decoding='async';image.draggable=false;image.dataset.layer=String(index);person.append(image);});
+  const celebrationAssets={
+    two:'mascot/assets/celebration/two-hand-heart.webp',
+    one:'mascot/assets/celebration/one-hand-heart.webp',
+    overhead:'mascot/assets/celebration/overhead-heart.webp'
+  };
+  Object.values(celebrationAssets).forEach(src=>{const image=new Image();image.src=src;});
+  let celebrationPoseLayer=0;
+  const fingerHeart=document.createElement('i'),overheadHeart=document.createElement('i');
+  fingerHeart.className='presenter-heart presenter-heart--finger';fingerHeart.textContent='♥';fingerHeart.setAttribute('aria-hidden','true');
+  overheadHeart.className='presenter-heart presenter-heart--overhead';overheadHeart.textContent='♡';overheadHeart.setAttribute('aria-hidden','true');
+  stage.append(fingerHeart,overheadHeart);
+  const celebrationCaption=document.createElement('span');
+  celebrationCaption.className='presenter-celebration-caption';celebrationCaption.hidden=true;
+  celebrationCaption.setAttribute('role','status');celebrationCaption.setAttribute('aria-live','polite');stage.append(celebrationCaption);
+  const celebrationChoices=document.createElement('div');celebrationChoices.className='presenter-celebration-choices';celebrationChoices.hidden=true;
+  celebrationChoices.setAttribute('aria-label','已解锁的人物彩蛋');
+  for(const [kind,label] of [['two','双手比心'],['one','单手比心'],['overhead','头顶比心'],['thanks','送你一句祝福']]){
+    const button=document.createElement('button');button.type='button';button.textContent=label;button.dataset.celebration=kind;
+    button.addEventListener('click',()=>celebrate(kind));celebrationChoices.append(button);
+  }
+  $('.presenter-tools').after(celebrationChoices);
   const state={phase:'waiting',chapter:'home',mode:read('ruan-mode')||'guided',line:0,readings:[],sequence:0,interactive:false,paused:false};
   let timer,deadline=0,remaining=0,hoverPaused=false,focusPaused=false,activeReading=false,detailOpen=false,focusTarget,focusTimer;
-  let speechKey='',lastGesture=0,walker,relocation=0,narrationEpoch=0,motionReady=Promise.resolve();
+  let speechKey='',lastGesture=0,walker,relocation=0,narrationEpoch=0,motionReady=Promise.resolve(),celebrationRun;
   const speech=new window.RuanPresenterSpeech({
     onEnd:options=>{if(activeReading)showLine(state.line+1,options);},
     onFallback:()=>schedule(),
@@ -45,7 +69,13 @@
     if(focusTarget){focusTarget.classList.add('host-focus');focusTimer=setTimeout(clearHighlight,1800);}
   }
   function clearTimer(){clearTimeout(timer);timer=undefined;}
-  function cancel(){++narrationEpoch;clearTimer();media.unfollowSpeech();speech.stop();activeReading=false;remaining=0;state.paused=false;media.setPaused(true);}
+  function cancelCelebration(){
+    if(celebrationRun){celebrationRun.abort.abort();cancelAnimationFrame(celebrationRun.frame);clearTimeout(celebrationRun.timer);celebrationRun=null;}
+    stage.classList.remove('is-like-celebrating');delete stage.dataset.celebrationBeat;delete stage.dataset.celebrationProgress;
+    celebrationPoses.forEach(image=>image.classList.remove('is-active'));
+    celebrationCaption.hidden=true;
+  }
+  function cancel(){++narrationEpoch;clearTimer();cancelCelebration();media.unfollowSpeech();speech.stop();activeReading=false;remaining=0;state.paused=false;media.setPaused(true);}
   function held(){return state.paused||(!speech.enabled&&!window.ruanAutoGuide?.active&&(hoverPaused||focusPaused))||document.hidden||detailOpen;}
   function schedule(){clearTimer();speech.setPaused(held());if(!activeReading||held()||speech.active)return;deadline=performance.now()+remaining;timer=setTimeout(()=>showLine(state.line+1),remaining);}
   function hold(){if(timer!==undefined)remaining=Math.max(0,deadline-performance.now());clearTimer();}
@@ -143,9 +173,70 @@
   });
   document.addEventListener('projectopen',e=>{if(e.detail?.guided)return;++relocation;detailOpen=true;cancel();state.interactive=false;phase('reading');media.setPaused(true);element.dataset.reading='true';});
   document.addEventListener('hostfeedback',e=>{if(!state.interactive||detailOpen)return;finish();display(e.detail.text);media.play('acknowledge',{loop:false});highlight(e.detail.topic);});
+  function unlockCelebration(){celebrationChoices.hidden=!window.RUAN_VISITOR_LIKED;}
+  document.addEventListener('portfoliolikestate',unlockCelebration);unlockCelebration();
+  async function celebrate(kind='all'){
+    if(!window.RUAN_VISITOR_LIKED)return;
+    window.ruanAutoGuide?.pause();window.portfolioCancelTransition?.();++relocation;walker?.stop();
+    clearTimeout(walker?.scrollTimer);cancel();clearHighlight();state.interactive=false;phase('celebrating');
+    $('.presenter-reading').hidden=true;$('.presenter-topic').textContent='谢谢你的喜欢';
+    stage.classList.add('is-like-celebrating');
+    document.dispatchEvent(new CustomEvent('hostcelebrationstart'));
+    const run={abort:new AbortController(),frame:0,timer:0};celebrationRun=run;
+    const signal=run.abort.signal;
+    const setPose=beat=>{
+      const src=celebrationAssets[beat];
+      if(!src){celebrationPoses.forEach(image=>image.classList.remove('is-active'));return;}
+      const current=celebrationPoses[celebrationPoseLayer];
+      if(current.classList.contains('is-active')&&current.getAttribute('src')===src)return;
+      celebrationPoseLayer=1-celebrationPoseLayer;
+      const next=celebrationPoses[celebrationPoseLayer];
+      next.src=src;next.classList.add('is-active');current.classList.remove('is-active');
+    };
+    const setBeat=(beat,text)=>{
+      if(signal.aborted)return;stage.dataset.celebrationBeat=beat;setPose(beat);display(text);celebrationCaption.textContent=text;celebrationCaption.hidden=false;
+      const rect=stage.getBoundingClientRect(),width=Math.min(236,innerWidth-24);
+      celebrationCaption.style.width=width+'px';
+      celebrationCaption.style.left=Math.max(12,Math.min(innerWidth-width-12,rect.left+rect.width/2-width/2))-rect.left+'px';
+      celebrationCaption.style.top=(rect.top>100?-88:18)+'px';
+    };
+    const complete=()=>{if(signal.aborted)return;finish();display('这份喜欢我收到啦。点一下我，还可以再看彩蛋。');};
+    setBeat('ready','收到你的喜欢啦，送你一个小彩蛋。');
+    stage.dataset.celebrationSource='full-body-keyframes';
+    media.stop();media.setPaused(false);media.draw();
+    if(media.reduced.matches){
+      setBeat('thanks','谢谢你来做客。愿你今天，也被喜欢的事物温柔回应。');
+      run.timer=setTimeout(complete,3200);return;
+    }
+    const words={two:'先送你一个双手比心。',one:'再送你一颗单手小爱心。',overhead:'还有一个大大的头顶比心。',thanks:'谢谢你来做客，愿你每天都有小小的惊喜。'};
+    const cues=kind==='all'?[
+      {at:0,beat:'ready',text:'这份喜欢，我收到啦。'},
+      {at:.14,beat:'two',text:words.two},
+      {at:.39,beat:'one',text:words.one},
+      {at:.62,beat:'overhead',text:words.overhead},
+      {at:.88,beat:'thanks',text:words.thanks}
+    ]:[{at:0,beat:kind,text:words[kind]||words.thanks}];
+    const duration=kind==='all'?7200:2600;let startedAt=performance.now(),pauseStarted=0;
+    let previousBeat='';
+    const tick=now=>{
+      if(signal.aborted)return;
+      if(media.paused){if(!pauseStarted)pauseStarted=now;run.frame=requestAnimationFrame(tick);return;}
+      if(pauseStarted){startedAt+=now-pauseStarted;pauseStarted=0;}
+      const progress=Math.min(1,(now-startedAt)/duration);
+      stage.dataset.celebrationProgress=progress.toFixed(3);
+      const cue=cues.findLast(item=>progress>=item.at)||cues[0];
+      if(cue.beat!==previousBeat){previousBeat=cue.beat;setBeat(cue.beat,cue.text);}
+      if(progress>=1){complete();return;}
+      run.frame=requestAnimationFrame(tick);
+    };
+    run.frame=requestAnimationFrame(tick);
+  }
+  document.addEventListener('portfoliolike',()=>celebrate());
+  window.addEventListener('pagehide',()=>{if(celebrationRun)finish();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&celebrationRun){finish();display('这份喜欢我收到啦，继续慢慢看吧。');}});
   document.addEventListener('projectclose',()=>{detailOpen=false;delete element.dataset.reading;if(window.ruanAutoGuide?.active||['departing','arriving','layout'].includes(state.phase))return;media.setPaused(false);finish();display(state.mode==='free'?'继续看吧，想聊的时候叫我。':'这个项目看完了，还想了解哪一个？');});
   renderChoices();modeUI();
-  walker=new window.RuanPresenterWalker($('.presenter-stage'),media);
+  walker=new window.RuanPresenterWalker(stage,media);
   document.addEventListener('click',async e=>{
     if(e.button!==0||e.defaultPrevented||e.ctrlKey||e.metaKey||e.shiftKey||detailOpen||document.body.dataset.destination)return;
     if(e.target.closest('button,a,input,textarea,form,label,summary,details,dialog,.presenter-dialog,.host-actor,img'))return;
@@ -162,7 +253,7 @@
     if(wasReading&&state.mode!=='free'){if(isResponse&&topics[subject])respond(subject);else introduce(state.chapter);}
     else finish();
   });
-  window.ruanPresenter={element,media,speech,walker,state,visited,cancel,introduce,finish,respond,setMode,setSound,
+  window.ruanPresenter={element,media,speech,walker,state,visited,cancel,introduce,finish,respond,setMode,setSound,celebrate,
     guideText(title,text){$('.presenter-topic').textContent=title;display(text);},
     async gesture(name,signal){if(signal.aborted)return;await media.play(name,{loop:false});if(signal.aborted)return;await media.waitForEnd(signal);},
     async leave(signal,travel,direction){++relocation;cancel();walker.stop();clearHighlight();state.interactive=false;phase('departing');$('.presenter-reading').hidden=true;$('.presenter-choices').hidden=true;

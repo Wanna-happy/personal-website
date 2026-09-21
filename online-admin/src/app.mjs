@@ -57,6 +57,25 @@ export class AdminState {
   try{
    const url=new URL(request.url),path=url.pathname;
    if(request.method==='GET'&&path==='/status')return json({configured:configured(this.env),mode:'online'});
+   if(request.method==='GET'&&path==='/likes'){
+    const visitor=url.searchParams.get('visitor')||'';
+    const count=Math.max(0,Number((await this.store.get('likes:count'))?.count)||0);
+    const liked=/^[a-zA-Z0-9-]{16,100}$/.test(visitor)&&!!(await this.store.get('likes:visitor:'+await digest(visitor)));
+    return json({count,liked});
+   }
+   if(request.method==='POST'&&path==='/likes'){
+    const data=await body(request,4096),visitor=typeof data.visitorId==='string'?data.visitorId:'';
+    if(!/^[a-zA-Z0-9-]{16,100}$/.test(visitor))throw new APIError(400,'点赞标识不正确');
+    return json(await this.serial(async()=>{
+     const now=Date.now(),expires=now+315360000000,key='likes:visitor:'+await digest(visitor);
+     const current=Math.max(0,Number((await this.store.get('likes:count'))?.count)||0);
+     if(await this.store.get(key))return {count:current,liked:true,accepted:false};
+     const count=current+1;
+     await this.store.put(key,{likedAt:now,expires});
+     await this.store.put('likes:count',{count,expires});
+     return {count,liked:true,accepted:true};
+    }));
+   }
    if(request.method==='POST'&&path==='/login'){const data=await body(request,4096);return json(await this.login(data.password));}
    if(!configured(this.env))throw new APIError(503,'在线后台尚未完成配置');
    const sessionKey=await this.session(request);

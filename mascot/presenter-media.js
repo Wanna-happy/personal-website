@@ -46,7 +46,7 @@ window.RUAN_PRESENTER_MEDIA={
     }
     setReduced(value){const was=this.reduced.matches;this.userReduced=value;if(was&&!this.reduced.matches&&!this.video)this.play('idle');else this.sync();}
     setPaused(value){this.paused=value;this.sync();}
-    async play(pose,{loop,segment,direction=-1,roaming=false,hold=false,narration}={}){
+    async play(pose,{loop,segment,direction=-1,roaming=false,hold=false,narration,settle=true,blend=true}={}){
       // Repeated clicks update the text without repeatedly restarting the same gesture.
       if(roaming&&!segment&&pose===this.pose&&this.video&&!this.video.ended&&this.canvas.dataset.media==='video'){this.direction=direction;this.paused=false;this.sync();return true;}
       const token=++this.token;
@@ -83,8 +83,8 @@ window.RUAN_PRESENTER_MEDIA={
         }else video.src=sourceURL;
         await Promise.race([video.play(),new Promise((_,reject)=>{timeout=setTimeout(()=>reject(new Error('Motion load timeout')),3000);})]);
         if(token!==this.token){video.pause();return false;}
-        this.canvas.dataset.media='video';this.blendAt=performance.now();if(roaming)this.previous=null;
-        if(!video.loop&&!this.travel)video.addEventListener('ended',()=>{if(token===this.token&&!this.speechClock)this.play('idle');},{once:true});
+        this.canvas.dataset.media='video';this.blendAt=performance.now();if(roaming||!blend)this.previous=null;
+        if(settle&&!video.loop&&!this.travel)video.addEventListener('ended',()=>{if(token===this.token&&!this.speechClock)this.play('idle');},{once:true});
         this.sync();return true;
       }catch{
         if(token===this.token){this.stop();this.previous=null;this.canvas.dataset.media='poster';this.draw();}
