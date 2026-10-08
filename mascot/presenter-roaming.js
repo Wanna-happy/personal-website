@@ -11,10 +11,11 @@
    document.addEventListener('projectopen',e=>{this.stop();stage.inert=!e.detail?.guided;});document.addEventListener('projectclose',()=>{stage.inert=false;});
   }
   height(){return this.stage.offsetHeight;}
-  clamp(p){const half=this.stage.offsetWidth*.25;return {x:Math.max(half+6,Math.min(innerWidth-half-6,p.x)),y:Math.max(this.height()+6,Math.min(innerHeight-8,p.y))};}
+  bottomInset(){return document.querySelector('.mobile-nav')?.getBoundingClientRect().height||0;}
+  clamp(p){const half=this.stage.offsetWidth*.25;return {x:Math.max(half+6,Math.min(innerWidth-half-6,p.x)),y:Math.max(this.height()+6,Math.min(innerHeight-this.bottomInset()-8,p.y))};}
   place(p){this.position=this.clamp(p);this.stage.style.left=this.position.x+'px';this.stage.style.top=this.position.y+'px';this.onPlacement?.();}
   stop(){this.serial++;this.moving=false;this.stage.dataset.moving='false';this.stage.dataset.overContent=String(!!this.position&&!this.clearPoint(this.position,this.obstacles()));this.marker.hidden=true;this.settle?.();this.settle=null;}
-  obstacles(){const rects=[];for(const el of [...this.viewport.querySelectorAll('h1,h2,h3,p,img,button,a,.presenter-dialog'),...document.querySelectorAll('.guided-preview[open],.site-utilities')]){if(el.closest('[hidden]')||!el.getClientRects().length)continue;if(/^(H[123]|P)$/.test(el.tagName)){const range=document.createRange();range.selectNodeContents(el);rects.push(...range.getClientRects());}else rects.push(el.getBoundingClientRect());}return rects.filter(r=>r.width>2&&r.height>2&&r.bottom>0&&r.top<innerHeight).map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}));}
+  obstacles(){const rects=[];for(const el of [...this.viewport.querySelectorAll('h1,h2,h3,p,img,button,a,.presenter-dialog'),...document.querySelectorAll('.guided-preview[open],.site-utilities,.mobile-nav')]){if(el.closest('[hidden]')||!el.getClientRects().length)continue;if(/^(H[123]|P)$/.test(el.tagName)){const range=document.createRange();range.selectNodeContents(el);rects.push(...range.getClientRects());}else rects.push(el.getBoundingClientRect());}return rects.filter(r=>r.width>2&&r.height>2&&r.bottom>0&&r.top<innerHeight).map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}));}
   clearPoint(p,obstacles){const half=this.stage.offsetWidth*.25,h=this.height()*.95;return !obstacles.some(r=>p.x+half>r.left-5&&p.x-half<r.right+5&&p.y>r.top-5&&p.y-h<r.bottom+5);}
   nearestClear(point,obstacles=this.obstacles(),{keepHeight=true}={}){
    const target=this.clamp(point);if(this.clearPoint(target,obstacles))return target;let best=null,score=Infinity;

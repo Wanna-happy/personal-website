@@ -43,13 +43,14 @@
  function place(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{
   const p=walker.position;if(!p)return;
   const w=box.offsetWidth,h=box.offsetHeight,pad=16,half=walker.stage.offsetWidth*.24;
+  const availableHeight=innerHeight-(document.querySelector('.mobile-nav')?.getBoundingClientRect().height||0);
   const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
   // Keep a pressed/hovered control under the pointer while pausing shrinks the bubble.
   if(pressing||(hovering&&!walker.moving)){
    box.style.left=clamp(parseFloat(box.style.left)||pad,pad,innerWidth-w-pad)+'px';
-   box.style.top=clamp(parseFloat(box.style.top)||pad,pad,innerHeight-h-pad)+'px';return;
+   box.style.top=clamp(parseFloat(box.style.top)||pad,pad,availableHeight-h-pad)+'px';return;
   }
-  const candidates=[{x:p.x-w-half-12,y:p.y-walker.height()+15},{x:p.x+half+12,y:p.y-walker.height()+15},{x:p.x-w/2,y:p.y-walker.height()-h-12},{x:p.x-w/2,y:p.y+12}].map(q=>({x:clamp(q.x,pad,innerWidth-w-pad),y:clamp(q.y,pad,innerHeight-h-pad)}));
+  const candidates=[{x:p.x-w-half-12,y:p.y-walker.height()+15},{x:p.x+half+12,y:p.y-walker.height()+15},{x:p.x-w/2,y:p.y-walker.height()-h-12},{x:p.x-w/2,y:p.y+12}].map(q=>({x:clamp(q.x,pad,innerWidth-w-pad),y:clamp(q.y,pad,availableHeight-h-pad)}));
   // Prefer empty margins and spacing between sections over text, controls, or photos.
   const obstacles=walker.obstacles();
   for(const el of walker.viewport.querySelectorAll('.about__info strong,.about__info span,figcaption,.skill-tags li')){
@@ -60,7 +61,7 @@
   const actor={left:p.x-half,right:p.x+half,top:p.y-walker.height(),bottom:p.y};
   const score=q=>{const r={left:q.x,right:q.x+w,top:q.y,bottom:q.y+h};return (obstacles.reduce((s,o)=>s+area(r,o),0)+area(r,actor)*4)*100+Math.hypot(q.x+w/2-p.x,q.y+h/2-(p.y-walker.height()/2));};
   // If no nearby gap fits, search the rest of the viewport instead of covering a fact.
-  for(let y=pad;y<=innerHeight-h-pad;y+=45)for(let x=pad;x<=innerWidth-w-pad;x+=90)candidates.push({x,y});
+  for(let y=pad;y<=availableHeight-h-pad;y+=45)for(let x=pad;x<=innerWidth-w-pad;x+=90)candidates.push({x,y});
   candidates.sort((a,b)=>score(a)-score(b));const q=candidates[0];box.style.left=q.x+'px';box.style.top=q.y+'px';
  });}
  walker.onPlacement=()=>{if(box.dataset.open==='true')place();};

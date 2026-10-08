@@ -37,3 +37,7 @@ python tools/admin-server.py
 node --test online-admin/test/*.test.mjs
 python tools/check-admin-auth.py
 ```
+
+## 手机访问（2026-10-08）
+
+直接分享 https://wanna-happy.github.io/personal-website/ 。手机端提供底部章节导航、安全区留白和更大的触控区域；电脑端沿用原布局。手机适配样式与导航分别位于 `mobile.css`、`mobile.js`。已以 320、390、430 像素宽度验证各章节、导航和作品弹窗，并复查 1440 像素桌面布局。
