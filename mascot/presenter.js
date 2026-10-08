@@ -139,8 +139,8 @@
     speech.enabled=enabled;
     $('[data-tour-action="sound"]').textContent=speech.enabled?'关闭声音':'开启声音';
     $('[data-tour-action="sound"]').setAttribute('aria-pressed',String(speech.enabled));
-    if(speech.enabled&&restart){if(activeReading){motionReady=media.play(state.chapter==='home'?'welcome':'present',{hold:true,narration:speechKey});showLine(state.line);}else introduce(state.chapter);}
-    else{media.unfollowSpeech();speech.stop();media.setPaused(held());schedule();}
+    if(speech.enabled&&restart){speech.unlock().then(()=>{if(!speech.enabled)return;if(activeReading){motionReady=media.play(state.chapter==='home'?'welcome':'present',{hold:true,narration:speechKey});showLine(state.line);}else introduce(state.chapter);});}
+    else{media.unfollowSpeech();speech.stop();media.setPaused(held());schedule();if(speech.enabled)speech.unlock();}
   }
   $('[data-tour-action="sound"]').addEventListener('click',()=>setSound(!speech.enabled));
   // The old generic system voice is deliberately disconnected pending a real voice clone.
@@ -240,7 +240,7 @@
     guideText(title,text){$('.presenter-topic').textContent=title;display(text);},
     async gesture(name,signal){if(signal.aborted)return;await media.play(name,{loop:false});if(signal.aborted)return;await media.waitForEnd(signal);},
     async leave(signal,travel,direction){++relocation;cancel();walker.stop();clearHighlight();state.interactive=false;phase('departing');$('.presenter-reading').hidden=true;$('.presenter-choices').hidden=true;
-      const target=walker.homePoint(document.body.dataset.destination),sign=target.x>=walker.position.x?1:-1;
+      const target=walker.homePoint(document.body.dataset.destination),sign=walker.mobile()?-1:target.x>=walker.position.x?1:-1;
       await walker.moveTo({x:walker.position.x+sign*70,y:walker.position.y},{signal,kind:travel});
     },
     mount(id){state.chapter=id;phase('layout');hoverPaused=false;focusPaused=false;detailOpen=false;delete element.dataset.reading;display('');$('.presenter-topic').textContent='';$('.presenter-destinations').open=false;element.dataset.expanded='false';renderChoices();modeUI();media.draw();},

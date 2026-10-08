@@ -1,9 +1,11 @@
 /* Phone reading layout; desktop composition remains in the existing styles. */
-.mobile-nav { display:none }
+.host-touch-hint { display:none }
+.host-poster-fallback { position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none }
+.presenter-person:has(canvas[data-rendered=true]) .host-poster-fallback { visibility:hidden }
 @media (max-width:760px) {
-  :root { --mobile-nav-height:calc(64px + env(safe-area-inset-bottom,0px)) }
-  .site-viewport { scroll-padding-top:76px;scroll-padding-bottom:var(--mobile-nav-height) }
-  .guided-tour .welcome { padding-top:calc(84px + env(safe-area-inset-top,0px));padding-bottom:calc(110px + env(safe-area-inset-bottom,0px)) }
+  :root { --mobile-host-height:calc(214px + env(safe-area-inset-bottom,0px)) }
+  .site-viewport { height:calc(100dvh - var(--mobile-host-height));scroll-padding-top:76px;scroll-padding-bottom:24px }
+  .guided-tour .welcome { padding-top:calc(84px + env(safe-area-inset-top,0px));padding-bottom:90px;min-height:calc(100dvh - var(--mobile-host-height)) }
   .guided-tour main>[data-page]:not(.welcome) { padding-top:calc(80px + env(safe-area-inset-top,0px));padding-bottom:28px }
   .chapter-body { min-width:0;width:100%;overflow-wrap:anywhere }
   .experience .section-heading h2 { font-size:clamp(28px,8vw,42px);overflow-wrap:anywhere }
@@ -14,14 +16,28 @@
   .chapter-footer { gap:12px;flex-wrap:wrap }
   .site-utilities { top:calc(10px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px)) }
   .site-utilities button,.site-utilities a { min-height:44px;display:inline-flex;align-items:center;justify-content:center }
-  .guided-tour .site-footer { padding-bottom:calc(var(--mobile-nav-height) + 36px) }
-  .welcome-bottom { bottom:calc(var(--mobile-nav-height) + 20px);flex-wrap:wrap }
-  .mobile-nav { position:fixed;z-index:60;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:8px max(10px,env(safe-area-inset-right,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));border-top:1px solid var(--line);background:var(--paper);box-shadow:0 -6px 24px #0001 }
-  .mobile-nav a { min-height:48px;display:flex;align-items:center;justify-content:center;border-radius:14px;font-size:13px;color:var(--muted) }
-  .mobile-nav a[aria-current=page] { background:var(--surface);color:var(--accent);font-weight:600 }
+  .guided-tour .site-footer { padding-bottom:32px }
+  .welcome-bottom { bottom:20px;flex-wrap:wrap }
   .host-floor-hint { display:none }
-  .host-actor[data-over-content=true] { opacity:.12 }
-  .presenter-dialog { max-height:calc(100dvh - var(--mobile-nav-height) - 100px) }
+  /* Keep the guide visible and tappable in a separate stage below the reading area. */
+  .host-floor { top:auto;height:var(--mobile-host-height);background:var(--paper);border-top:1px solid var(--line) }
+  .host-actor.presenter-stage { width:190px;height:190px;z-index:56;opacity:1 }
+  .host-actor[data-over-content=true] { opacity:1 }
+  .host-actor .presenter-person { width:100px;pointer-events:auto }
+  .host-actor[data-over-content=true] .presenter-person { pointer-events:auto }
+  .host-actor canvas { width:190px;height:190px }
+  .host-touch-hint { display:block;position:absolute;bottom:0;left:50%;transform:translate(-50%,100%);white-space:nowrap;font-size:11px;color:var(--teal);pointer-events:none }
+  .host-greeting { display:none }
+  .presenter { width:calc(100% - 150px);max-width:260px }
+  .presenter[data-expanded=true] { width:calc(100% - 24px);max-width:none }
+  .presenter:not([data-expanded=true]) .presenter-dialog { display:block!important;max-height:174px;padding:10px 12px!important }
+  .presenter:not([data-expanded=true]) .presenter-line { display:block!important;font-size:12px;line-height:1.7;margin:6px 0 }
+  .presenter:not([data-expanded=true]) .presenter-meta { margin:0;justify-content:space-between }
+  .presenter:not([data-expanded=true]) .presenter-tools { display:none }
+  .presenter[data-expanded=true] .presenter-dialog { max-height:calc(100dvh - var(--mobile-host-height) - 80px) }
+  .presenter-destinations summary,.presenter-destinations a { min-height:44px;display:inline-flex;align-items:center;padding:8px 12px }
+  .guided-preview[open] { max-height:calc(100dvh - var(--mobile-host-height) - 40px) }
+  .presenter-dialog { max-height:calc(100dvh - 100px) }
   .presenter-tools button,.presenter-expand { min-height:44px;min-width:44px;font-size:12px }
   .presenter-line { font-size:13px }
   .project-dialog { padding:24px 20px;max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain }

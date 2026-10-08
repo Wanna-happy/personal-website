@@ -6,6 +6,12 @@
       this.audio=new Audio();this.audio.preload='auto';this.enabled=false;
       this.token=0;this.active=false;this.onEnd=onEnd;this.onFallback=onFallback;this.onStatus=onStatus;
     }
+    unlock(){
+      if(this.unlocked||this.active||!matchMedia('(pointer:coarse)').matches)return Promise.resolve();
+      // Prime this same audio element during the visitor's tap, before async media loads.
+      this.audio.src='data:audio/wav;base64,UklGRsQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+      return this.audio.play().then(()=>{this.unlocked=true;if(!this.active)this.audio.pause();}).catch(()=>{});
+    }
     stop(){
       ++this.token;clearTimeout(this.watchdog);this.active=false;
       cancelAnimationFrame(this.cueFrame);this.entry=null;

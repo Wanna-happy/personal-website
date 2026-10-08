@@ -11,21 +11,24 @@
    document.addEventListener('projectopen',e=>{this.stop();stage.inert=!e.detail?.guided;});document.addEventListener('projectclose',()=>{stage.inert=false;});
   }
   height(){return this.stage.offsetHeight;}
-  bottomInset(){return document.querySelector('.mobile-nav')?.getBoundingClientRect().height||0;}
-  clamp(p){const half=this.stage.offsetWidth*.25;return {x:Math.max(half+6,Math.min(innerWidth-half-6,p.x)),y:Math.max(this.height()+6,Math.min(innerHeight-this.bottomInset()-8,p.y))};}
+  mobile(){return matchMedia('(max-width:760px)').matches;}
+  bottomInset(){return this.mobile()?Math.max(0,this.floor.getBoundingClientRect().height-214):0;}
+  clamp(p){if(this.mobile()){const half=this.stage.offsetWidth/2;return {x:Math.max(half+4,Math.min(innerWidth-half-4,p.x)),y:innerHeight-this.bottomInset()-24};}const half=this.stage.offsetWidth*.25;return {x:Math.max(half+6,Math.min(innerWidth-half-6,p.x)),y:Math.max(this.height()+6,Math.min(innerHeight-this.bottomInset()-8,p.y))};}
   place(p){this.position=this.clamp(p);this.stage.style.left=this.position.x+'px';this.stage.style.top=this.position.y+'px';this.onPlacement?.();}
   stop(){this.serial++;this.moving=false;this.stage.dataset.moving='false';this.stage.dataset.overContent=String(!!this.position&&!this.clearPoint(this.position,this.obstacles()));this.marker.hidden=true;this.settle?.();this.settle=null;}
-  obstacles(){const rects=[];for(const el of [...this.viewport.querySelectorAll('h1,h2,h3,p,img,button,a,.presenter-dialog'),...document.querySelectorAll('.guided-preview[open],.site-utilities,.mobile-nav')]){if(el.closest('[hidden]')||!el.getClientRects().length)continue;if(/^(H[123]|P)$/.test(el.tagName)){const range=document.createRange();range.selectNodeContents(el);rects.push(...range.getClientRects());}else rects.push(el.getBoundingClientRect());}return rects.filter(r=>r.width>2&&r.height>2&&r.bottom>0&&r.top<innerHeight).map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}));}
+  obstacles(){const rects=[];for(const el of [...this.viewport.querySelectorAll('h1,h2,h3,p,img,button,a,.presenter-dialog'),...document.querySelectorAll('.guided-preview[open],.site-utilities')]){if(el.closest('[hidden]')||!el.getClientRects().length)continue;if(/^(H[123]|P)$/.test(el.tagName)){const range=document.createRange();range.selectNodeContents(el);rects.push(...range.getClientRects());}else rects.push(el.getBoundingClientRect());}return rects.filter(r=>r.width>2&&r.height>2&&r.bottom>0&&r.top<innerHeight).map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}));}
   clearPoint(p,obstacles){const half=this.stage.offsetWidth*.25,h=this.height()*.95;return !obstacles.some(r=>p.x+half>r.left-5&&p.x-half<r.right+5&&p.y>r.top-5&&p.y-h<r.bottom+5);}
   nearestClear(point,obstacles=this.obstacles(),{keepHeight=true}={}){
+   if(this.mobile())return this.clamp(point);
    const target=this.clamp(point);if(this.clearPoint(target,obstacles))return target;let best=null,score=Infinity;
    for(let y=this.height()+8;y<=innerHeight-8;y+=20)for(let x=this.stage.offsetWidth*.25+8;x<innerWidth-this.stage.offsetWidth*.25;x+=20){const p={x,y};if(!this.clearPoint(p,obstacles))continue;const d=(x-target.x)**2+(y-target.y)**2;if(d<score){score=d;best=p;}}
    // Dense layouts may have no complete gap. Rest at the least occupied side at the requested height.
    if(!best||(keepHeight&&Math.abs(best.y-target.y)>160)){const sides=[this.clamp({x:0,y:target.y}),this.clamp({x:innerWidth,y:target.y})],overlap=p=>obstacles.filter(r=>p.x>r.left&&p.x<r.right&&p.y>r.top&&p.y-this.height()<r.bottom).length;best=sides.sort((a,b)=>overlap(a)-overlap(b)||Math.abs(a.x-target.x)-Math.abs(b.x-target.x))[0];}return best;
   }
-  homePoint(){return this.nearestClear({x:innerWidth*.78,y:innerHeight*.76},this.obstacles(),{keepHeight:false});}
+  homePoint(){if(this.mobile())return this.clamp({x:innerWidth-99,y:innerHeight});return this.nearestClear({x:innerWidth*.78,y:innerHeight*.76},this.obstacles(),{keepHeight:false});}
   clearLine(a,b,obstacles){const n=Math.max(2,Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/18));for(let i=1;i<=n;i++){const t=i/n;if(!this.clearPoint({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t},obstacles))return false;}return true;}
   pathTo(point){
+   if(this.mobile()){this.travelObstacles=[];return [this.clamp(point)];}
    const obstacles=this.obstacles(),target=this.nearestClear(point,obstacles);this.travelObstacles=obstacles;if(this.clearLine(this.position,target,obstacles))return [target];
    const routes=[];for(let y=this.height()+10;y<innerHeight-8;y+=40){const a={x:this.position.x,y},b={x:target.x,y};if(this.clearLine(this.position,a,obstacles)&&this.clearLine(a,b,obstacles)&&this.clearLine(b,target,obstacles))routes.push([a,b,target]);}
    for(let x=this.stage.offsetWidth/2+10;x<innerWidth-this.stage.offsetWidth/2;x+=40){const a={x,y:this.position.y},b={x,y:target.y};if(this.clearLine(this.position,a,obstacles)&&this.clearLine(a,b,obstacles)&&this.clearLine(b,target,obstacles))routes.push([a,b,target]);}

@@ -2,18 +2,20 @@
 (() => {
  const host=window.ruanPresenter,box=host.element,walker=host.walker;
  const person=walker.stage.querySelector('.presenter-person');
+ const mobile=()=>matchMedia('(max-width:760px)').matches;
  let openTimer,closeTimer,actorHover=false,panelHover=false;
  box.id='host-interactions';box.dataset.open='false';box.inert=true;
  person.setAttribute('aria-controls',box.id);person.setAttribute('aria-expanded','false');
- function close(){clearTimeout(openTimer);clearTimeout(closeTimer);box.dataset.open='false';box.inert=true;person.setAttribute('aria-expanded','false');box.dataset.expanded='false';}
+ function close(){clearTimeout(openTimer);clearTimeout(closeTimer);box.dataset.open=String(mobile());box.inert=!mobile();person.setAttribute('aria-expanded','false');box.dataset.expanded='false';place();}
  function open(){if(walker.moving||document.body.dataset.destination)return;clearTimeout(closeTimer);place();box.inert=false;box.dataset.open='true';person.setAttribute('aria-expanded','true');dismissGreeting(true);}
  function laterClose(){clearTimeout(openTimer);clearTimeout(closeTimer);closeTimer=setTimeout(()=>{if(!actorHover&&!panelHover&&!box.contains(document.activeElement))close();},420);}
  person.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse')return;actorHover=true;if(!walker.moving){clearTimeout(closeTimer);openTimer=setTimeout(open,280);}});
- person.addEventListener('pointerleave',()=>{actorHover=false;laterClose();});
+ person.addEventListener('pointerleave',e=>{if(e.pointerType!=='mouse')return;actorHover=false;laterClose();});
  box.addEventListener('pointerenter',()=>{panelHover=true;clearTimeout(closeTimer);});
- box.addEventListener('pointerleave',()=>{panelHover=false;laterClose();});
+ box.addEventListener('pointerleave',e=>{if(e.pointerType!=='mouse')return;panelHover=false;laterClose();});
  person.addEventListener('focus',()=>{if(person.matches(':focus-visible'))open();});
  person.addEventListener('click',e=>{
+  if(mobile()){e.preventDefault();e.stopImmediatePropagation();open();box.dataset.expanded=String(box.dataset.expanded!=='true');sync();return;}
   if(window.RUAN_VISITOR_LIKED){close();return;}
   if(box.dataset.open!=='true'){e.preventDefault();e.stopImmediatePropagation();open();}
  },true);
@@ -33,7 +35,7 @@
  const toggle=document.createElement('button');toggle.type='button';toggle.className='presenter-expand';toggle.textContent='更多';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','展开人物讲解选项');
  box.querySelector('.presenter-meta').append(toggle);
  toggle.addEventListener('click',()=>{box.dataset.expanded=String(box.dataset.expanded!=='true');sync();});
- function sync(){const expanded=box.dataset.expanded==='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'收起':'更多';toggle.setAttribute('aria-label',expanded?'收起人物讲解选项':'展开人物讲解选项');place();}
+ function sync(){const expanded=box.dataset.expanded==='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'收起':mobile()?'带路 / 讲解':'更多';toggle.setAttribute('aria-label',expanded?'收起人物讲解选项':'展开人物讲解选项');place();}
  let raf,hovering=false,pressing=false,releaseTimer;
  box.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovering=true;if(host.state.phase!=='interactive')box.dataset.interacting='true';}});
  box.addEventListener('pointerleave',()=>{hovering=false;if(!pressing)delete box.dataset.interacting;place();});
@@ -43,7 +45,8 @@
  function place(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{
   const p=walker.position;if(!p)return;
   const w=box.offsetWidth,h=box.offsetHeight,pad=16,half=walker.stage.offsetWidth*.24;
-  const availableHeight=innerHeight-(document.querySelector('.mobile-nav')?.getBoundingClientRect().height||0);
+  const availableHeight=innerHeight;
+  if(mobile()){const expanded=box.dataset.expanded==='true';box.style.left='12px';box.style.top=Math.max(64,innerHeight-h-(expanded?walker.floor.getBoundingClientRect().height+8:24))+'px';return;}
   const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
   // Keep a pressed/hovered control under the pointer while pausing shrinks the bubble.
   if(pressing||(hovering&&!walker.moving)){
@@ -69,5 +72,7 @@
  new MutationObserver(sync).observe(box,{attributes:true,attributeFilter:['data-expanded']});
  walker.viewport.addEventListener('scroll',place,{passive:true});window.addEventListener('resize',place);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&box.dataset.expanded==='true'){box.dataset.expanded='false';toggle.focus({preventScroll:true});}});
+ window.addEventListener('resize',()=>{if(mobile()){box.dataset.open='true';box.inert=false;}sync();});
+ if(mobile()){box.dataset.open='true';box.inert=false;}
  sync();
 })();

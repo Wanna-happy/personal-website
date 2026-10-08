@@ -169,6 +169,7 @@ window.RUAN_PRESENTER_MEDIA={
         for(let i=0;i<p.length;i+=4){const neutral=Math.max(p[i],p[i+2]),green=p[i+1]-neutral;if(green>20){p[i+3]*=1-Math.max(0,Math.min(1,(green-20)/90));p[i+1]=Math.min(p[i+1],neutral+8);}}
         c.putImageData(frame,0,0);
       }
+      this.canvas.dataset.rendered='true';
       if(this.previous&&this.blendAt&&!this.reduced.matches){
         const fraction=(performance.now()-this.blendAt)/100;
         if(fraction<1){c.save();c.globalAlpha=1-fraction;c.drawImage(this.previous,0,0,w,h);c.restore();}
