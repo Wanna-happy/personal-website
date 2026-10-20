@@ -89,3 +89,6 @@ h2 em { font-style:normal; color:var(--accent) }
 @media(max-width:760px) { .section-shell { width:calc(100% - 40px) } .section-index { margin-bottom:25px } .about__info { gap:0 20px } .about__info strong { font-size:15px } .about__info article:nth-child(n+3) { grid-column:1/-1 } .about-life { margin-top:55px } .life-heading { display:block } .life-gallery { grid-template-columns:1fr } .life-cover { min-height:350px } .life-grid { grid-template-rows:190px 190px } .work-grid { grid-template-columns:1fr } .work-card__cover { min-height:290px } .work-card__cover>strong { font-size:36px } .story-flow { margin-top:45px } .story-card { padding-left:22px } .story-card__body h3 { font-size:23px } .contact-card { padding:10px 0 0 } .contact-character { width:260px; height:340px } .contact-card__footer { font-size:7px } .site-footer { width:calc(100% - 40px); font-size:8px; padding-bottom:200px } .site-footer p { display:none } .project-dialog { padding:25px } }
 @media(hover:none),(pointer:coarse) { .cursor { display:none } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; animation:none!important } }
+
+/* Preserve paragraph breaks in resume-aligned experience descriptions. */
+.story-card__body > p { white-space:pre-line }
