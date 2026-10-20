@@ -15,7 +15,7 @@
  const at=steps.findIndex(s=>s.project);
  steps.splice(at,2,...content.projects.map(p=>({page:'works',label:p.title,key:'topics-'+p.id,target:'[data-project-id=\"'+p.id+'\"]',project:p.id,customText:p.managed?(p.narration||p.description||p.title):null,gesture:'show'})));
  if(!content.experiences.length)steps.splice(steps.findIndex(s=>s.page==='experience'),1);
- else if(content.experiences.some(e=>e.managed)){const step=steps.find(s=>s.page==='experience');step.customText=content.experiences.map(e=>e.narration||e.highlight||e.title).join(' ');}
+ else if(content.experiences.some(e=>e.managed)){const at=steps.findIndex(s=>s.page==='experience');steps.splice(at,1,...content.experiences.map((e,i)=>({page:'experience',label:e.company,key:e.managed?'topics-experience-'+e.id:'topics-'+e.id,target:'#experience .story-card:nth-child('+(i+1)+')',feet:.8})));}
  }
  const controls=host.element.querySelector('.presenter-tools');
  const resumeButton=document.createElement('button');resumeButton.type='button';resumeButton.dataset.guideControl='resume';resumeButton.textContent='继续导览';resumeButton.hidden=true;controls.append(resumeButton);

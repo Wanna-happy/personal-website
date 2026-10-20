@@ -19,12 +19,12 @@
       "secondsToRender": 13.53
     },
     "chapters-experience": {
-      "src": "mascot/assets/lipsync/chapters-experience.mp4",
-      "audioSha256": "322015e1b154a10b409abe0d839d4eee84edb8a30c7f856236d863bcd5ef3517",
+      "src": "mascot/assets/lipsync/chapters-experience-20261020.mp4",
+      "audioSha256": "d96f3505928b37d5ba0ded46a065b73be07fdfbbfc97992d0400fd2f74d9cd24",
       "fps": 24.0,
-      "duration": 6.958333333333333,
-      "frames": 167,
-      "secondsToRender": 6.38
+      "duration": 14.041666666666666,
+      "frames": 337,
+      "secondsToRender": 82.6
     },
     "chapters-works": {
       "src": "mascot/assets/lipsync/chapters-works.mp4",
@@ -121,6 +121,22 @@
       "duration": 6.0,
       "frames": 144,
       "secondsToRender": 5.83
+    },
+    "topics-experience-jiuqu": {
+      "src": "mascot/assets/lipsync/topics-experience-jiuqu-20261020.mp4",
+      "audioSha256": "286d0dcbe58791ade11fad26c5b5cdd15344847c631cc14f6967cf63fe04d560",
+      "fps": 24.0,
+      "duration": 42.583333333333336,
+      "frames": 1022,
+      "secondsToRender": 105.83
+    },
+    "topics-experience-robot": {
+      "src": "mascot/assets/lipsync/topics-experience-robot-20261020.mp4",
+      "audioSha256": "ffe31a4127d4b6e8703e15187d3ea197d0eebcab8b8fabc857dd2a9ef1d482fe",
+      "fps": 24.0,
+      "duration": 40.5,
+      "frames": 972,
+      "secondsToRender": 160.55
     }
   }
 }
