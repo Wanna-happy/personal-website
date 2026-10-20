@@ -26,32 +26,17 @@ window.PORTFOLIO_CONTENT = {
     {
       "id": "robot",
       "title": "和一台机器人对话 100 次",
-      "date": "2025.06 — 2025.08",
-      "company": "津安达 · 成都研发部",
-      "description": "在津安达具身机器人公司，我干了一件听起来很酷的事：让迎宾机器人能听懂人话。调试 LLM Prompt、搭建角色设定与 Few-shot 框架，用 Temperature 和 Top-P 做了上百轮 A/B 测试——最后在真实的机器人上跑了 100+ 轮实景验证。",
+      "date": "2026.06 — 至今",
+      "company": "九曲无限",
+      "description": "在九曲无限具身机器人公司，我干了一件听起来很酷的事：让迎宾机器人能听懂人话。调试 LLM Prompt、搭建角色设定与 Few-shot 框架，用 Temperature 和 Top-P 做了上百轮 A/B 测试——最后在真实的机器人上跑了 100+ 轮实景验证。",
       "highlight": "从调试 Prompt 开始，我第一次理解了模型能力是有边界的，而产品人的工作就是找到那个边界，然后推进它。",
       "tags": [
         "Prompt 工程",
         "具身智能",
         "A/B 测试"
       ],
-      "narration": "",
-      "managed": false
-    },
-    {
-      "id": "weekly",
-      "title": "让 AI 替团队写周报",
-      "date": "2026.07 — 2026.09",
-      "company": "未来智选",
-      "description": "参与广告决策辅助、业务巡检、周报生成等多个 AI Agent 项目。独立负责周报 Agent 这条线——从梳理能力边界、定义触发条件到输出规范，全部从头来过。做完 HTML 可交互原型后直接跟开发对接接口。",
-      "highlight": "把\"手工写周报耗时、指标查看分散\"的问题，落成可演示、可验证的产品方案。",
-      "tags": [
-        "AI Agent",
-        "MVP 验证",
-        "原型设计"
-      ],
-      "narration": "",
-      "managed": false
+      "narration": "从2026年6月至今，我在九曲无限调试机器人的提示词和角色设定，也做了一百多轮实景验证。模型的表现，最终要放到真实场景里检验。",
+      "managed": true
     }
   ],
   "projects": [
